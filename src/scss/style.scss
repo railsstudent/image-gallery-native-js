@@ -1,0 +1,145 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+$fontSize: 2em;
+
+@mixin fitImage {
+    max-width: 100%;
+    object-fit: cover;
+}
+
+@mixin roundBox($padTop, $padLeft, $background, $radius: 0, $borderWidth: 1px, $color: #000) {
+    padding: $padTop $padLeft;
+    border: $borderWidth solid #888;
+    border-radius: $radius;
+    background: $background;
+    color: $color;
+}
+
+.title {
+    width: 100%;
+    p {
+        text-align: center;
+        font-size: $fontSize;
+        text-decoration: underline;
+    }
+}
+
+#container {
+    width: calc(100vw - 4%);
+    min-height: 100vh;
+    margin: 0 2%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .image {
+        flex: 0 0 33.33%;
+        max-height: 300px;
+        display: flex;
+
+        img {
+            flex-grow: 1;
+            @include fitImage;
+        }
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+
+    &.show {
+        display: block;
+    }
+
+    &-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 700px;
+        height: 500px;
+        @include roundBox(20px, 30px, #fefefe, 10px, 8px);
+         
+        .navigation-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+
+            .left-arrow, .right-arrow, .close {
+                font-size: 1.5em;
+                font-weight: bold;
+                opacity: 1;
+                @include roundBox(0, 0.2em, #008CBA, 5px, 2px, #fff);
+    
+                &.hide {
+                    opacity: 0;
+                }
+            }
+
+            .left-controls {
+                flex-grow: 1;
+                display: flex;
+
+                .left-arrow {
+                    justify-content: flex-start;
+                }    
+            }
+
+            .right-arrow, .close {
+                display: inline-block;
+            }
+        }
+    }
+
+    &-body {
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+
+        .modal-image-wrapper {
+            height: 400px;
+            overflow-y: auto;
+            margin-bottom: 8px;
+            flex-grow: 1;
+
+            display: flex;
+        }
+
+        img {
+            @include fitImage;
+        }
+
+        #caption {
+            text-align: center;
+        }
+    }
+}
+
+#msgPanel {
+    display: none;
+    width: 100vw; 
+    height: 100vh;
+
+    &.show {
+        display: flex;
+        align-items: center;
+    }
+
+    .description {
+        width: 100%;
+        font-size: $fontSize;    
+        text-align: center;
+        @include roundBox(5%, 0, #dc3545!important, 0, 0, #fff);
+    }
+}

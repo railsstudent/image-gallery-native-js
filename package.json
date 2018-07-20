@@ -1,0 +1,81 @@
+{
+  "name": "image-gallery-native",
+  "version": "1.0.0",
+  "description": "Image gallery using native JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp build && gulp serve",
+    "build": "gulp build",
+    "build-dist": "gulp build-dist",
+    "test": "mocha test/bootstrap.js test/slideshow.test.js",
+    "test1": "mocha test/bootstrap.js test/gallery.test.js",
+    "lint": "gulp lint"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "rules": {
+      "strict": [
+        "error",
+        "global"
+      ],
+      "semi": 2,
+      "no-unused-vars": 2,
+      "quotes": [
+        "warn",
+        "single"
+      ],
+      "comma-dangle": 2,
+      "no-extra-semi": 2,
+      "no-console": [
+        "warn",
+        {
+          "allow": [
+            "warn",
+            "error"
+          ]
+        }
+      ],
+      "no-undef": 1,
+      "no-unreachable": 2,
+      "no-magic-numbers": [
+        "warn",
+        {
+          "ignoreArrayIndexes": true
+        }
+      ],
+      "no-unused-expressions": 1
+    },
+    "parserOptions": {
+      "ecmaVersion": 2017
+    },
+    "env": {
+      "browser": true,
+      "node": true,
+      "mocha": true,
+      "es6": true
+    }
+  },
+  "author": "Connie Leung",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "2.24.5",
+    "chai": "4.1.2",
+    "del": "3.0.0",
+    "dotenv": "6.0.0",
+    "gulp": "3.9.1",
+    "gulp-autoprefixer": "5.0.0",
+    "gulp-clean-css": "3.9.4",
+    "gulp-concat": "2.6.1",
+    "gulp-eslint": "5.0.0",
+    "gulp-htmlmin": "4.0.0",
+    "gulp-if": "2.0.2",
+    "gulp-replace": "1.0.0",
+    "gulp-sass": "4.0.1",
+    "gulp-sourcemaps": "2.6.4",
+    "gulp-uglify": "3.0.0",
+    "mocha": "5.2.0",
+    "puppeteer": "1.6.0",
+    "run-sequence": "2.2.1"
+  }
+}
