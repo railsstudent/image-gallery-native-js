@@ -4,12 +4,11 @@
   "description": "Image gallery using native JavaScript",
   "main": "index.js",
   "scripts": {
-    "start": "gulp build && gulp serve",
     "build": "gulp build",
     "build-dist": "gulp build-dist",
+    "start": "npm run build && gulp serve",
     "serve:test": "gulp build && http-server dist/ -p 8000",
-    "test": "mocha test/bootstrap.js test/slideshow.test.js",
-    "test1": "rm ./test/*.png; SCREEN_SHOT=false mocha test/bootstrap.js test/gallery.test.js",
+    "test": "rm ./test/*.png; SCREEN_SHOT=false mocha test/bootstrap.js --recursive test",
     "lint": "gulp lint"
   },
   "eslintConfig": {
