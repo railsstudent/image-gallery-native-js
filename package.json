@@ -9,7 +9,7 @@
     "build-dist": "gulp build-dist",
     "serve:test": "gulp build && http-server dist/ -p 8000",
     "test": "mocha test/bootstrap.js test/slideshow.test.js",
-    "test1": "mocha test/bootstrap.js test/gallery.test.js",
+    "test1": "rm ./test/*.png; SCREEN_SHOT=false mocha test/bootstrap.js test/gallery.test.js",
     "lint": "gulp lint"
   },
   "eslintConfig": {

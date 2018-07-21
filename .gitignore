@@ -76,6 +76,9 @@ dist/
 
 .vscode
 
+# ignore png screenshot
+*.png
+
 # MacOSX General
 .DS_Store
 .AppleDouble
