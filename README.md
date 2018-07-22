@@ -4,6 +4,19 @@ Image Gallery
 This image gallery application makes request to Pixabay public API to retrieve 15 images of swan and render them in HTML page. When an image is clicked, it is shown in an image modal. User can click previous button to preview the previous one or click next button to preview the next one. When previewing is done, user can clock close button to close the modal to return back to image gallery.
 
 # Architecture
+This is a simple website consisted of JS, SCSS and HTML.  JS code files encapsulate front-end logic and CSS styling is documented in SCSS file, style.scss.  
+`gallery.js` defines UI logic of image gallery and image modal. It is consisted of functions that listen to button events to open/close image modal and render specific image. Moreover, the functions optionally add or remove CSS class to show/hide buttons programmatically.   
+`slideshow.js` modals the behaviour of image modal. SlideShow accepts a list of urls and returns a given url based on index. The class has helper functions to determine whether an image is the first or last image. The result is used by image gallery to update opacity of left, right buttons respectively.
+
+```
+# Project structure
+src/
+   --- scss/style.css
+   --- js/gallery.js
+   --- js/slideshow.js
+   --- index.html
+```
+
 
 # Technology Stack
 * `JavaScript` -  native JS code to render images and image modal in HTML page 
