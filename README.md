@@ -88,7 +88,7 @@ Unit and UI tests are provided in this project and they can be found in `test/` 
 * `slideshow.test.js` - test cases for unit testing SlideShow class
 * `gallery.test.js` - UI test cases for gallery page and image modal
 
-    ### Serve static website 
+    ### Step 1: Serve static website 
     * Open a terminal to serve the static website in http://localhost:8000 
         ```javascript
         # with npm
@@ -98,7 +98,7 @@ Unit and UI tests are provided in this project and they can be found in `test/` 
         yarn serve:test
         ```
 
-    ### Run all test cases without screenshot
+    ### Step 2a: Run all test cases without screenshot
     * Open a new terminal to run unit and UI tests on command line
         ```javascript
         # with npm
@@ -109,7 +109,7 @@ Unit and UI tests are provided in this project and they can be found in `test/` 
         ```
         or 
 
-    ### Run all test cases with screenshots
+    ### Step 2b: Run all test cases with screenshots
     * Open a new terminal to run unit and UI tests on command line
         ```javascript
         # with npm
@@ -153,7 +153,7 @@ dist/
 ## Further deployment
 1. Netlify auto-deploy from Github to production site when new code is pushed to master branch in remote repository. 
 
-# Improvements 
+# Area of Improvements 
 1. Image urls of Pixable are temporary and they become invalid without warning. During page load, the application always makes request to Pixabay and very often, the same set of urls is returned.
     1. One improvement is to cache URLs in local storage and render them directly.  
     2. If any cached url returns error, web application makes request to the API again to retrieve a fresh set of urls and render them on the page. 
