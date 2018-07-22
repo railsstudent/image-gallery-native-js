@@ -9,6 +9,7 @@
     "start": "npm run build && gulp serve",
     "serve:test": "gulp build && http-server dist/ -p 8000",
     "test": "rm ./test/*.png; SCREEN_SHOT=false mocha test/bootstrap.js --recursive test",
+    "test-screenshot": "rm ./test/*.png; SCREEN_SHOT=true mocha test/bootstrap.js --recursive test",
     "lint": "gulp lint"
   },
   "eslintConfig": {
