@@ -5,11 +5,21 @@ function SlideShow (urls) {
     this.index = -1;
 }
 
+// Private function
+function inRange(index, urls) {
+    return index >= 0 && index < urls.length;
+}
+
 SlideShow.prototype.totalCount = function() {
     return this.urls.length;
 };
 
 SlideShow.prototype.setCurrentIndex = function(index) {
+    if (index < 0) {
+        throw new Error('Non-negative integer is expected');
+    } else if (index >= this.totalCount()) {
+        throw new Error('Greater than the last index of url: ' + index);
+    }
     this.index = index;
 };
 
@@ -26,7 +36,7 @@ SlideShow.prototype.isLastImage = function() {
 };
 
 SlideShow.prototype.currentUrl = function() {
-    if (this.index >= 0 && this.index < this.urls.length) {
+    if (inRange(this.index, this.urls)) {
         return this.urls[this.index];
     }
     return null;
@@ -34,7 +44,7 @@ SlideShow.prototype.currentUrl = function() {
 
 SlideShow.prototype.showNext = function() {
     var newIdx = this.index + 1;
-    if (newIdx >= 0 && newIdx < this.urls.length) {
+    if (inRange(newIdx, this.urls)) {
         this.index = newIdx;
         return true;
     }
@@ -43,7 +53,7 @@ SlideShow.prototype.showNext = function() {
 
 SlideShow.prototype.showPrev = function() {
     var newIdx = this.index - 1;
-    if (newIdx >= 0 && newIdx < this.urls.length) {
+    if (inRange(newIdx, this.urls)) {
         this.index = newIdx;
         return true;
     }

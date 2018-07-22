@@ -3,9 +3,11 @@
 const puppeteer = require('puppeteer');
 const chai = require('chai');
 const expect = chai.expect;
+const assert = chai.assert;
 const globalVariables = { 
     browser: global.browser,
-    expect: global.expect
+    expect: global.expect,
+    assert: global.assert
 };
 
 // puppeteer options
@@ -18,14 +20,7 @@ const opts = {
 // expose variables
 before (async function () {
     global.expect = expect;
-    //mock localStorage
-    // global.window = {
-    //     localStorage: {
-    //         getItem: function _getItem() {
-    //             return null;
-    //         }
-    //     }
-    // };
+    global.assert = assert;
     global.browser = await puppeteer.launch(opts);
 });
 
@@ -35,4 +30,5 @@ after (function () {
 
   global.browser = globalVariables.browser;
   global.expect = globalVariables.expect;
+  global.assert = globalVariables.assert;
 });

@@ -525,3 +525,41 @@ describe('gallery test', function() {
   });
 });
 
+describe('gallery test', function() {
+  let page;
+  this.timeout(TIMEOUT);
+
+  before(async () => {
+    try {
+      page = await browser.newPage();
+      await page.goto('http://localhost:8000/');
+    } catch (e) {
+      console.error(e);
+    }
+  });
+
+  after(async () => {
+    await page.close();
+  });
+
+  it('Shows error message if api call returns error', async () => {
+    try {
+      await page.waitForSelector('#msgPanel', { visible: true, timeout: 0 });
+      const msgPanelHandle = await page.$('#msgPanel');
+
+      await page.screenshot({
+        path: './test/test63.png'
+      });
+
+      const display = await page.evaluate((msgPanel) => window.getComputedStyle(msgPanel).style.display, msgPanelHandle);
+      const msg = await page.evaluate((msgPanel) => msgPanel.querySelector('.description').innerText, msgPanelHandle);
+      // expect it is visible
+      expect(display).to.not.equal('none');
+      expect(msg).to.equal('Unable to retrieve images from Pixabay');
+      msgPanelHandle.dispose();
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
+  });
+});

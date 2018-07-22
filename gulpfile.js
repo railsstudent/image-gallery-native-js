@@ -47,10 +47,10 @@ gulp.task('sass', function() {
 gulp.task('js', function () {
     gulp.src('src/**/*.js', { base: 'js' })
         .pipe(replace('API_KEY', process.env.API_KEY))
-        .pipe(sourcemaps.init())
+        .pipe(gulpIf(minify, sourcemaps.init()))
         .pipe(concat('all.js'))
         .pipe(gulpIf(minify, uglify()))
-        .pipe(sourcemaps.write('.'))
+        .pipe(gulpIf(minify, sourcemaps.write('.')))
         .pipe(gulp.dest('dist/js'));
 });
 
