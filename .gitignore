@@ -76,6 +76,8 @@ dist/
 
 .vscode
 
+.angulardoc.json
+
 # ignore png screenshot
 *.png
 
