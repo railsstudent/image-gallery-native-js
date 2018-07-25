@@ -5,11 +5,11 @@ function Gallery() {
     var API_URL = 'https://pixabay.com/api/?q=swan&per_page=15&image_type=&key=API_KEY';
     var i = 0;
     var images = [];
-    var elModal = document.getElementsByClassName('modal')[0];
+    var elModal = document.querySelector('.modal');
     var elModalImage = document.getElementById('modal-image');       
-    var elClose = document.getElementsByClassName('close')[0];
-    var elBtnLeft = document.getElementsByClassName('left-arrow')[0];
-    var elBtnRight = document.getElementsByClassName('right-arrow')[0];
+    var elClose = document.querySelector('.modal .close');
+    var elBtnLeft = document.querySelector('.modal .left-arrow');
+    var elBtnRight = document.querySelector('.modal .right-arrow');
     var elMessagePanel = document.getElementById('msgPanel');
     var elContainer = document.getElementById('container');
     var elCaption = document.getElementById('caption');
@@ -70,15 +70,19 @@ function Gallery() {
     }
 
     function openImage(index) {
-        slideShow.setCurrentIndex(index);
-        setButtonsVisible();
-        if (elModal) {
-            elModal.classList.add('show');
+        try {
+            slideShow.setCurrentIndex(index);
+            setButtonsVisible();
+            if (elModal) {
+                elModal.classList.add('show');
+            }
+            if (elModalImage) {
+                elModalImage.src = slideShow.currentUrl();
+            }
+            updateImageCaption();
+        } catch (e) {
+            console.error(e);
         }
-        if (elModalImage) {
-            elModalImage.src = slideShow.currentUrl();
-        }
-        updateImageCaption();
     }
 
     function setButtonsVisible() {

@@ -2,21 +2,18 @@
 
 'use strict';
 
-var SlideShow = require('../src/js/slideshow.js');
-var chai = require('chai');
-var assert = chai.assert;
-
+const SlideShow = require('../src/js/slideshow.js');
 
 describe('slideshow test', function() {
-  var first, middle;
+  let first, middle;
+  let imageUrls = [];
+  let slideshow = null;
   before(function() {
     first = 0;
     middle = 1;
   });
 
-  describe('single image slideshow', function() {
-    var imageUrls = [];
-    var slideshow = null;
+  describe('single image slideshow', () => {
     before(function() {
       // runs before all tests in this block
       imageUrls = [
@@ -57,10 +54,8 @@ describe('slideshow test', function() {
     });
   });
 
-  describe('multiple images slideshow', function() {
-    var imageUrls = [];
-    var slideshow = null;
-    var last;
+  describe('multiple images slideshow', () => {
+    let last;
     before(function() {
       // runs before all tests in this block
       imageUrls = [
@@ -111,10 +106,8 @@ describe('slideshow test', function() {
     });
   });
 
-  describe('multiple images slideshow navigate backward', function() {
-    var imageUrls = [];
-    var slideshow = null;
-    var last;
+  describe('multiple images slideshow navigate backward', () => {
+    let last;
     before(function() {
       // runs before all tests in this block
       imageUrls = [
@@ -154,6 +147,58 @@ describe('slideshow test', function() {
       assert.strictEqual(slideshow.isFirstImage(), true);
       assert.strictEqual(slideshow.isLastImage(), false);
       assert.strictEqual(slideshow.currentUrl(), 'image1.jpg');
+    });
+  });
+
+  describe('Throw error message if current index is out of bound', () => {
+    before(function() {
+      // runs before all tests in this block
+      imageUrls = [
+        'image1.jpg',
+        'image2.jpg',
+        'image3.jpg'
+      ];
+      slideshow = new SlideShow.SlideShow(imageUrls);
+    });
+
+    it('Throw error message if index is negative', function() { 
+      expect(() => slideshow.setCurrentIndex(-1)).to.throw('Non-negative integer is expected');
+    });
+
+    it('Throw error message if index is greater than the number of urls', function() {
+      expect(() => slideshow.setCurrentIndex(imageUrls.length)).to.throw(`Greater than the last index of url: ${imageUrls.length}`);
+    });
+  });
+
+  describe('Do not throw error message if current index is within range', () => {
+    describe('single image slideshow', () => {
+      before(function() {
+        // runs before all tests in this block
+        imageUrls = [
+          'image1.jpg'
+        ];
+        slideshow = new SlideShow.SlideShow(imageUrls);
+      });
+
+      it('Throw no error message if index is between 0 and length of urls minus 1', function() { 
+        imageUrls.forEach((_, i) => expect(() => slideshow.setCurrentIndex(i)).to.not.throw());
+      });
+    });
+
+    describe('multiple image slideshow', () => {
+      before(function() {
+        // runs before all tests in this block
+        imageUrls = [
+          'image1.jpg',
+          'image2.jpg',
+          'image3.jpg'
+        ];
+        slideshow = new SlideShow.SlideShow(imageUrls);
+      });
+
+      it('Throw no error message if index is between 0 and length of urls minus 1', function() { 
+        imageUrls.forEach((_, i) => expect(() => slideshow.setCurrentIndex(i)).to.not.throw());
+      });
     });
   });
 });

@@ -384,6 +384,7 @@ describe('gallery test', function() {
       const imageElement = await page.$('.image:nth-child(1)');
       await imageElement.click(); 
 
+      const IDX_IMAGE = 17;
       const modalHandle = await page.$('.modal.show');
       const rightBtnHandle = await page.$('.modal.show .right-arrow');
       let caption = null;
@@ -394,7 +395,7 @@ describe('gallery test', function() {
 
         if (SCREEN_SHOT === 'true') {
           await page.screenshot( {
-            path: `./test/test${17 + i}.png`
+            path: `./test/test${IDX_IMAGE + i}.png`
           });
         }
         await rightBtnHandle.click();
@@ -405,7 +406,7 @@ describe('gallery test', function() {
 
       if (SCREEN_SHOT === 'true') {
         await page.screenshot( {
-          path: `./test/test${17 + NUM_IMAGES}.png`
+          path: `./test/test${IDX_IMAGE + NUM_IMAGES}.png`
         });
       }
 
@@ -426,6 +427,7 @@ describe('gallery test', function() {
       const imageElement = await page.$(`.image:nth-child(${NUM_IMAGES})`);
       await imageElement.click(); 
 
+      const IDX_IMAGE = 32;
       const modalHandle = await page.$('.modal.show');
       const leftBtnHandle = await page.$('.modal.show .left-arrow');
       let opacity = null;
@@ -439,7 +441,7 @@ describe('gallery test', function() {
 
         if (SCREEN_SHOT === 'true') {
           await page.screenshot( {
-            path: `./test/test${32 + i}.png`
+            path: `./test/test${IDX_IMAGE + i}.png`
           });
         }
         await leftBtnHandle.click();
@@ -452,7 +454,7 @@ describe('gallery test', function() {
       expect(opacity).to.equal('0');
       if (SCREEN_SHOT === 'true') {
         await page.screenshot( {
-          path: `./test/test${32 + NUM_IMAGES}.png`
+          path: `./test/test${IDX_IMAGE + NUM_IMAGES}.png`
         });
       }
 
@@ -473,6 +475,7 @@ describe('gallery test', function() {
       const imageElement = await page.$('.image:nth-child(1)');
       await imageElement.click(); 
       
+      const IDX_IMAGE = 47;
       const modalHandle = await page.$('.modal.show');      
       const rightBtnHandle = await page.$('.modal.show .right-arrow');
       let opacity = null;
@@ -491,7 +494,7 @@ describe('gallery test', function() {
         expect(closeOpacity).to.equal('1');
         if (SCREEN_SHOT === 'true') {
           await page.screenshot( {
-            path: `./test/test${47 + i}.png`
+            path: `./test/test${IDX_IMAGE + i}.png`
           });
         }
         await rightBtnHandle.click();
@@ -509,7 +512,7 @@ describe('gallery test', function() {
       expect(closeOpacity).to.equal('1');
       if (SCREEN_SHOT === 'true') {
         await page.screenshot( {
-          path: `./test/test${47 + NUM_IMAGES}.png`
+          path: `./test/test${IDX_IMAGE + NUM_IMAGES}.png`
         });
       }
 
@@ -525,3 +528,52 @@ describe('gallery test', function() {
   });
 });
 
+describe('Negative gallery test', function() {
+  let page;
+  this.timeout(TIMEOUT);
+
+  before(async () => {
+    try {
+      page = await browser.newPage();
+      await page.setRequestInterception(true);
+      page.on('request', (request) => {
+        if (request.url().startsWith('https://pixabay.com/api/')) {
+          request.respond({
+            status: 500
+          });
+        } else {
+          request.continue();
+        }
+      });
+      await page.goto('http://localhost:8000/');
+    } catch (e) {
+      console.error(e);
+    }
+  });
+
+  after(async () => {
+    await page.close();
+  });
+
+  it('Shows error message if api request returns error', async () => {
+    try {
+      await page.waitForSelector('#msgPanel', { visible: true, timeout: 0 });
+      const msgPanelHandle = await page.$('#msgPanel');
+
+      if (SCREEN_SHOT === 'true') {
+        await page.screenshot({
+          path: './test/test63.png'
+        });
+      }
+
+      const display = await page.evaluate((msgPanel) => window.getComputedStyle(msgPanel).display, msgPanelHandle);
+      const msg = await page.evaluate((msgPanel) => msgPanel.querySelector('.description').innerText, msgPanelHandle);
+      expect(display).to.not.equal('none');
+      expect(msg).to.equal('Unable to retrieve images from Pixabay');
+      msgPanelHandle.dispose();
+    } catch (e) {
+      console.error(e);
+      throw e;
+    }
+  });
+});
