@@ -2,8 +2,6 @@
 
 'use strict';
 
-const SlideShow = require('../src/js/slideshow.js');
-
 describe('slideshow test', function() {
   let first, middle;
   let imageUrls = [];
@@ -19,7 +17,7 @@ describe('slideshow test', function() {
       imageUrls = [
         'image1.jpg'
       ];
-      slideshow = new SlideShow.SlideShow(imageUrls);
+      slideshow = new SlideShow(imageUrls);
       slideshow.setCurrentIndex(first);
     });
 
@@ -64,7 +62,7 @@ describe('slideshow test', function() {
         'image3.jpg'
       ];
       last = imageUrls.length - 1;
-      slideshow = new SlideShow.SlideShow(imageUrls);
+      slideshow = new SlideShow(imageUrls);
       slideshow.setCurrentIndex(first);
     });
 
@@ -116,7 +114,7 @@ describe('slideshow test', function() {
         'image3.jpg'
       ];
       last = imageUrls.length - 1;
-      slideshow = new SlideShow.SlideShow(imageUrls);
+      slideshow = new SlideShow(imageUrls);
       slideshow.setCurrentIndex(last);
     });
 
@@ -158,7 +156,7 @@ describe('slideshow test', function() {
         'image2.jpg',
         'image3.jpg'
       ];
-      slideshow = new SlideShow.SlideShow(imageUrls);
+      slideshow = new SlideShow(imageUrls);
     });
 
     it('Throw error message if index is negative', function() { 
@@ -177,7 +175,7 @@ describe('slideshow test', function() {
         imageUrls = [
           'image1.jpg'
         ];
-        slideshow = new SlideShow.SlideShow(imageUrls);
+        slideshow = new SlideShow(imageUrls);
       });
 
       it('Throw no error message if index is between 0 and length of urls minus 1', function() { 
@@ -193,7 +191,7 @@ describe('slideshow test', function() {
           'image2.jpg',
           'image3.jpg'
         ];
-        slideshow = new SlideShow.SlideShow(imageUrls);
+        slideshow = new SlideShow(imageUrls);
       });
 
       it('Throw no error message if index is between 0 and length of urls minus 1', function() { 

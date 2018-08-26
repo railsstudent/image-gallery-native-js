@@ -15,6 +15,7 @@ const concat       = require('gulp-concat');
 const gulpIf       = require('gulp-if');
 const replace      = require('gulp-replace');
 const eslint       = require('gulp-eslint');
+const KarmaServer = require('karma').Server;
 
 var minify = false;
 
@@ -94,3 +95,14 @@ gulp.task('lint', [], function() {
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());
 });
+
+/**
+ * Run test once and exit
+ */
+gulp.task('test', function (done) {
+    new KarmaServer({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: true
+    }, done).start();
+});
+  
