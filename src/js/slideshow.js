@@ -59,8 +59,4 @@ SlideShow.prototype.showPrev = function() {
     }
     return false;
 };
-
-if(typeof exports !== 'undefined') {
-    exports.SlideShow = SlideShow;
-}
   

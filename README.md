@@ -24,8 +24,9 @@ src/
 * `ES2018` - write unit test and UI test codes to be executed by puppeteer and mocha
 * `gulp` - build system to minify codes, generate static website, hot reload and run linting and testing 
 * `Eslint` - report bad coding styles in JavaScript files
-* `Mocha + Puppeteer` - execute unit tests and UI tests written in JavaScript
+* `Mocha` - execute unit tests and UI tests written in JavaScript
 * `Pupeeteer` - provide headless Chrome API to allow developer to run UI test on command line 
+* `Karma` - test runner to run tests in headless browser and collect code coverage 
 
 # Live Site
 https://jolly-mccarthy-37eb03.netlify.com/
@@ -84,12 +85,13 @@ yarn lint
 
 # Testing
 Unit and UI tests are provided in this project and they can be found in `test/` directory.
-* `bootstrap.js` - stores global variables that are reused in slideshow.test.js and gallery.test.js
+* `bootstrap.js` - stores global variables that are reused in gallery.test.js
+* `bootstrap.karma.js` - stores global variables that are reused in slideshow.test.js
 * `slideshow.test.js` - test cases for unit testing SlideShow class
 * `gallery.test.js` - UI test cases for gallery page and image modal
 
     ### Step 1: Serve static website 
-    * Open a terminal to serve the static website in http://localhost:8000 
+    * Open a terminal to serve the static website at http://localhost:8000 
         ```javascript
         # with npm
         npm run serve:test
@@ -98,27 +100,45 @@ Unit and UI tests are provided in this project and they can be found in `test/` 
         yarn serve:test
         ```
 
-    ### Step 2a: Run all test cases without screenshot
-    * Open a new terminal to run unit and UI tests on command line
+    ### Step 2a: Run gallery test cases without screenshot
+    * Open a new terminal to run UI tests on command line
+        ```javascript
+        # with npm
+        npm run puppeteer
+
+        # or with yarn
+        yarn puppeteer
+        ```
+        or 
+
+    ### Step 2b: Run gallery test cases with screenshots
+    * Open a new terminal to run UI tests on command line
+        ```javascript
+        # with npm
+        npm run puppeteer-screenshot
+
+        # or with yarn
+        yarn puppeteer-screenshot
+        ```
+    In both cases, test screenshots are saved in `test/` directory to verify visual results.
+
+    ### Step 3: Run slideshow test cases and collect lcov code coverage
+    * Open a new terminal to run unit tests on command line
         ```javascript
         # with npm
         npm run test
 
         # or with yarn
         yarn test
-        ```
-        or 
 
-    ### Step 2b: Run all test cases with screenshots
-    * Open a new terminal to run unit and UI tests on command line
+    ### Step 4: See lcov code coverage results in browser
+    * Open a new terminal to serve the report files at http://localhost:8001 
         ```javascript
         # with npm
-        npm run test-screenshot
+        npm run serve:coverage
 
         # or with yarn
-        yarn test-screenshot
-        ```
-    In both cases, test screenshots are saved in `test/` directory to verify visual results.
+        yarn serve:coverage
 
 # Make production-build
 Run npm script to build JS, html and css files to `dist/` directory
