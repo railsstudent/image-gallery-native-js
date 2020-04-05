@@ -7,12 +7,12 @@
     "build": "gulp build",
     "build-dist": "gulp build-dist",
     "start": "npm run build && gulp serve",
-    "serve:test": "gulp build && http-server dist/ -p 8000",
+    "serve:test": "gulp build && npx serve dist/ -l 8000",
     "puppeteer": "rm ./test/*.png; SCREEN_SHOT=false mocha test/bootstrap.js test/gallery.test.js",
     "puppeteer-screenshot": "rm ./test/*.png; SCREEN_SHOT=true mocha test/bootstrap.js test/gallery.test.js",
     "lint": "gulp lint",
     "test": "gulp test",
-    "serve:coverage": "gulp test && http-server coverage/lcov-report/ -p 8001"
+    "serve:coverage": "gulp test && npx serve coverage/lcov-report/ -l 8001"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
@@ -77,7 +77,6 @@
     "gulp-sass": "4.0.1",
     "gulp-sourcemaps": "2.6.4",
     "gulp-uglify": "3.0.0",
-    "http-server": "^0.12.1",
     "karma": "3.0.0",
     "karma-chai": "0.1.0",
     "karma-chrome-launcher": "2.2.0",
