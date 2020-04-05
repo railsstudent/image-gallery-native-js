@@ -22,17 +22,17 @@ var minify = false;
 // Static Server + watching scss/html files
 gulp.task('serve', [], function(done) {
     browserSync.init({
-        server: "./dist"
+        server: './dist'
     });
-    gulp.watch("src/**/*.scss", ['sass']).on('change', browserSync.reload);
-    gulp.watch("src/**/*.js", ['js']).on('change', browserSync.reload);
-    gulp.watch("src/**/*.html", ['html']).on('change', browserSync.reload);        
+    gulp.watch('src/**/*.scss', ['sass']).on('change', browserSync.reload);
+    gulp.watch('src/**/*.js', ['js']).on('change', browserSync.reload);
+    gulp.watch('src/**/*.html', ['html']).on('change', browserSync.reload);
     done();
 });
 
 // Compile sass into CSS & auto-inject into browsers
 gulp.task('sass', function() {
-    return gulp.src("src/**/*.scss", { base: 'src/scss' })
+    return gulp.src('src/**/*.scss', { base: 'src/scss' })
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(sourcemaps.write())
@@ -41,7 +41,7 @@ gulp.task('sass', function() {
             cascade: false
         }))
         .pipe(gulpIf(minify, cleanCSS()))
-        .pipe(gulp.dest("dist/css"));
+        .pipe(gulp.dest('dist/css'));
 });
 
 // process JS files and return the stream.
@@ -65,7 +65,7 @@ gulp.task('html', [], function() {
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('clean', function() { 
+gulp.task('clean', function() {
     del(['dist/**/*.*']);
 });
 
@@ -81,7 +81,7 @@ gulp.task('build', [], function(done) {
 });
 
 gulp.task('build-dist', [], function(done) {
-    minify = true
+    minify = true;
     runSequence(
         'clean',
         ['sass', 'js', 'html'],
@@ -105,4 +105,3 @@ gulp.task('test', function (done) {
         singleRun: true
     }, done).start();
 });
-  
