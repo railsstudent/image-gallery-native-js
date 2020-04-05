@@ -85,6 +85,20 @@
     "karma-mocha": "1.3.0",
     "mocha": "5.2.0",
     "puppeteer": "^2.1.1",
-    "run-sequence": "2.2.1"
+    "run-sequence": "2.2.1",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.1.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test"
+    }
+  },
+  "lint-staged": {
+    "*.{js,scss,html}": [
+      "npm run lint",
+      "git add"
+    ]
   }
 }
