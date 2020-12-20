@@ -36,17 +36,12 @@ gulp.task(
     'tailwind',
     gulp.series(function () {
         const tailwindcss = require('tailwindcss')
-        const atimport = require("postcss-import")
+        const atimport = require('postcss-import')
         const rename = require('gulp-rename')
         const purgecss = require('gulp-purgecss')
         return gulp
             .src('src/scss/tailwind.scss', { base: 'src/scss' })
-            .pipe(
-                postcss([
-                    atimport(),
-                    tailwindcss('./tailwind.config.js'), 
-                    autoprefixer(),
-                ]))
+            .pipe(postcss([atimport(), tailwindcss('./tailwind.config.js'), autoprefixer()]))
             .pipe(
                 purgecss({
                     content: ['src/**/*.html'],
@@ -125,7 +120,7 @@ gulp.task(
     'build',
     gulp.series(function (done) {
         minify = false
-        runSequence('clean', ['tailwind', 'sass','js', 'html'], done)
+        runSequence('clean', ['tailwind', 'sass', 'js', 'html'], done)
     }),
 )
 

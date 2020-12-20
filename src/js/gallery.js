@@ -15,9 +15,9 @@ function Gallery() {
     const elCaption = document.getElementById('caption')
 
     const publicAPI = {
-        getImages: getImages,
-        openImage: openImage,
-        registerEvents: registerEvents,
+        getImages,
+        openImage,
+        registerEvents,
     }
     return publicAPI
 
@@ -81,25 +81,17 @@ function Gallery() {
 
     function setButtonsVisible() {
         if (slideShow) {
-            if (slideShow.isFirstImage()) {
-                elBtnLeft.classList.add('hide')
-            } else {
-                elBtnLeft.classList.remove('hide')
-            }
+            const btnLeftAction = slideShow.isFirstImage() ? 'add' : 'remove'
+            const btnRightAction = slideShow.isLastImage() ? 'add' : 'remove'
 
-            if (slideShow.isLastImage()) {
-                elBtnRight.classList.add('hide')
-            } else {
-                elBtnRight.classList.remove('hide')
-            }
+            elBtnLeft.classList[btnLeftAction]('hide')
+            elBtnRight.classList[btnRightAction]('hide')
         }
     }
 
     function registerEvents() {
         if (elClose) {
-            elClose.addEventListener('click', function () {
-                elModal.classList.remove('show')
-            })
+            elClose.addEventListener('click', () => elModal.classList.remove('show'))
         }
 
         if (elBtnLeft) {
@@ -135,7 +127,7 @@ function Gallery() {
 
     function updateImageCaption() {
         if (elCaption) {
-            elCaption.innerHTML = slideShow.currentIndex() + 1 + ' of ' + slideShow.totalCount()
+            elCaption.innerHTML = `${slideShow.currentIndex() + 1} of ${slideShow.totalCount()}`
         }
     }
 }

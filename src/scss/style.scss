@@ -4,7 +4,7 @@
     margin: 0;
 }
 
-$fontSize: 2em;
+$fontSize: 2rem;
 $border-color: #888;
 $primary: #008cba;
 $content-background: #fefefe;
@@ -20,16 +20,6 @@ $content-background: #fefefe;
     border-radius: $radius;
     background: $background;
     color: $color;
-}
-
-.title {
-    width: 100%;
-    padding: 30px 0;
-    p {
-        text-align: center;
-        font-size: $fontSize;
-        text-decoration: underline;
-    }
 }
 
 #container {
@@ -81,43 +71,12 @@ $content-background: #fefefe;
         @include roundBox(20px, 30px, $content-background, 10px, 8px);
 
         .navigation-controls {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-
             .left-arrow,
             .right-arrow,
             .close {
-                font-size: 1.5em;
-                font-weight: bold;
-                opacity: 1;
-                @include roundBox(0, 0.2em, $primary, 5px, 2px, #fff);
-
                 &.hide {
                     opacity: 0;
                 }
-
-                &:hover {
-                    cursor: pointer;
-                }
-            }
-
-            .left-controls {
-                flex-grow: 1;
-                display: flex;
-
-                .left-arrow {
-                    justify-content: flex-start;
-                }
-            }
-
-            .right-arrow,
-            .close {
-                display: inline-block;
-            }
-
-            .right-arrow {
-                margin-right: 5px;
             }
         }
     }

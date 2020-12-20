@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn-blue {
+    @apply bg-blue-500 text-white font-bold text-white p-2 rounded text-small opacity-100;
+}
+
+.btn-blue:hover {
+    @apply bg-blue-700;
+}

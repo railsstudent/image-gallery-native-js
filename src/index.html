@@ -3,13 +3,14 @@
         <meta charset="utf-8" />
         <title>Image Gallery</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="css/tailwind.css" type="text/css" rel="stylesheet" />
         <link href="css/style.css" type="text/css" rel="stylesheet" />
         <script src="https://polyfill.io/v2/polyfill.min.js?features=Promise"></script>
         <script src="https://polyfill.io/v2/polyfill.min.js?features=fetch"></script>
     </head>
     <body>
-        <div class="title">
-            <p>Swan Song</p>
+        <div class="px-0 py-8 w-full font-sans">
+            <p class="text-center text-2rem underline">Swan Song</p>
         </div>
         <div id="container"></div>
         <div id="msgPanel">
@@ -17,13 +18,19 @@
         </div>
         <div class="modal">
             <div class="modal-content">
-                <div class="navigation-controls">
-                    <div class="left-controls">
-                        <div class="left-arrow" title="Show Previous">&lt;</div>
+                <div class="navigation-controls flex justify-between mb-s2">
+                    <div class="flex-grow flex">
+                        <button class="left-arrow justify-start btn-blue" title="Show Previous">
+                            <span>&lt;</span>
+                        </button>
                     </div>
                     <div class="right-controls">
-                        <div class="right-arrow" title="Show Next">&gt;</div>
-                        <div class="close" title="Close">&times;</div>
+                        <button class="right-arrow mr-2 btn-blue" title="Show Next">
+                            <span>&gt;</span>
+                        </button>
+                        <button class="close btn-blue" title="Close">
+                            <span>&times;</span>
+                        </button>
                     </div>
                 </div>
                 <div class="modal-body">

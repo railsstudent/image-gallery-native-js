@@ -14,7 +14,8 @@
         "test": "gulp test",
         "serve:coverage": "gulp test && npx http-server dist/coverage -p 8001",
         "serve:prod": "gulp build-dist && npx http-server dist -p 8002",
-        "format": "prettier --write ."
+        "format": "prettier --write .",
+        "tailwind": "gulp tailwind"
     },
     "eslintConfig": {
         "extends": "eslint:recommended",
