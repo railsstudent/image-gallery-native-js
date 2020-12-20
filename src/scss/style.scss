@@ -49,6 +49,10 @@ $content-background: #fefefe;
             flex-grow: 1;
             @include fitImage;
         }
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 }
 
@@ -88,6 +92,10 @@ $content-background: #fefefe;
 
                 &.hide {
                     opacity: 0;
+                }
+
+                &:hover {
+                    cursor: pointer;
                 }
             }
 
