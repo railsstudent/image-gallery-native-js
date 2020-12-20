@@ -2,13 +2,93 @@
 
 'use strict';
 
+const zero = 0;
+const one = 1;
+const minusOne = -1;
+
 describe('slideshow test', function() {
-  let first, middle;
+  let first, middle, negativeIndex;
   let imageUrls = [];
   let slideshow = null;
   before(function() {
-    first = 0;
-    middle = 1;
+    first = zero;
+    middle = one;
+    negativeIndex = minusOne;
+  });
+
+  describe('undefined urls', () => {
+    before(function() {
+      // runs before all tests in this block
+      slideshow = new SlideShow();
+    });
+
+    it('slideshow has 0 image', function() {
+      assert.strictEqual(slideshow.totalCount(), zero);
+    });
+
+    it('current url should be null', function() {
+      assert.strictEqual(slideshow.currentUrl(), null);
+    });
+
+    it('initial index is always -1', function() {
+      assert.strictEqual(slideshow.currentIndex(), negativeIndex);
+    });
+
+    it('Slide show with 0 image should return false for isFirstImage', function() {
+      assert.strictEqual(slideshow.isFirstImage(), false);
+    });
+
+    it('Slide show with 0 image should return false for isLastImage', function() {
+      assert.strictEqual(slideshow.isLastImage(), false);
+    });
+
+    it('Show next image does nothing when there is 0 image', function() {
+      assert.strictEqual(slideshow.showNext(), false);
+      assert.strictEqual(slideshow.currentIndex(), negativeIndex);
+    });
+
+    it('Slide prev image does nothing when there is 0 image', function() {
+      assert.strictEqual(slideshow.showPrev(), false);
+      assert.strictEqual(slideshow.currentIndex(), negativeIndex);
+    });
+  });
+
+  describe('empty slideshow', () => {
+    before(function() {
+      // runs before all tests in this block
+      imageUrls = [];
+      slideshow = new SlideShow(imageUrls);
+    });
+
+    it('slideshow has 0 image', function() {
+      assert.strictEqual(slideshow.totalCount(), zero);
+    });
+
+    it('current url should be null', function() {
+      assert.strictEqual(slideshow.currentUrl(), null);
+    });
+
+    it('initial index is always -1', function() {
+      assert.strictEqual(slideshow.currentIndex(), negativeIndex);
+    });
+
+    it('Slide show with 0 image should return false for isFirstImage', function() {
+      assert.strictEqual(slideshow.isFirstImage(), false);
+    });
+
+    it('Slide show with 0 image should return false for isLastImage', function() {
+      assert.strictEqual(slideshow.isLastImage(), false);
+    });
+
+    it('Show next image does nothing when there is 0 image', function() {
+      assert.strictEqual(slideshow.showNext(), false);
+      assert.strictEqual(slideshow.currentIndex(), negativeIndex);
+    });
+
+    it('Slide prev image does nothing when there is 0 image', function() {
+      assert.strictEqual(slideshow.showPrev(), false);
+      assert.strictEqual(slideshow.currentIndex(), negativeIndex);
+    });
   });
 
   describe('single image slideshow', () => {
@@ -61,7 +141,7 @@ describe('slideshow test', function() {
         'image2.jpg',
         'image3.jpg'
       ];
-      last = imageUrls.length - 1;
+      last = imageUrls.length - one;
       slideshow = new SlideShow(imageUrls);
       slideshow.setCurrentIndex(first);
     });
@@ -113,7 +193,7 @@ describe('slideshow test', function() {
         'image2.jpg',
         'image3.jpg'
       ];
-      last = imageUrls.length - 1;
+      last = imageUrls.length - one;
       slideshow = new SlideShow(imageUrls);
       slideshow.setCurrentIndex(last);
     });
@@ -160,7 +240,7 @@ describe('slideshow test', function() {
     });
 
     it('Throw error message if index is negative', function() { 
-      expect(() => slideshow.setCurrentIndex(-1)).to.throw('Non-negative integer is expected');
+      expect(() => slideshow.setCurrentIndex(negativeIndex)).to.throw('Non-negative integer is expected');
     });
 
     it('Throw error message if index is greater than the number of urls', function() {

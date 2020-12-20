@@ -97,10 +97,16 @@ gulp.task('lint', gulp.series(function() {
         .pipe(eslint.failAfterError());
 }));
 
+gulp.task('clean-coverage', gulp.series(function(done) {
+    del(['dist/coverage']);
+    done();
+}));
+
 /**
  * Run test once and exit
  */
 gulp.task('test', gulp.series(function (done) {
+    runSequence('clean-coverage', done);
     new KarmaServer({
         configFile: __dirname + '/karma.conf.js',
         singleRun: true

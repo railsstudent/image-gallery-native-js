@@ -42,9 +42,22 @@ module.exports = function(config) {
 
     // optionally, configure the reporter
     coverageReporter: {
-      type : 'lcov',
-      dir : 'coverage/',
-      subdir: '.'
+      dir : 'dist/coverage/',
+      watermarks: {
+        statements: [ 50, 75 ],
+        functions: [ 50, 75 ],
+        branches: [ 50, 75 ],
+        lines: [ 50, 75 ]
+      },
+      reporters: [
+        // reporters not supporting the `file` property
+        { type: 'html', subdir: 'report-html' },
+        // reporters supporting the `file` property, use `subdir` to directly
+        // output them in the `dir` directory
+        { type: 'cobertura', subdir: '.', file: 'cobertura.txt' },
+        { type: 'text', subdir: '.', file: 'text.txt' },
+        { type: 'text-summary', subdir: '.', file: 'text-summary.txt' },
+      ]
     },
 
     // test results reporter to use

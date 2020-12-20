@@ -12,7 +12,7 @@
     "puppeteer-screenshot": "rm ./test/*.png; SCREEN_SHOT=true mocha test/bootstrap.js test/gallery.test.js",
     "lint": "gulp lint",
     "test": "gulp test",
-    "serve:coverage": "gulp test && npx http-server coverage -p 8001"
+    "serve:coverage": "gulp test && npx http-server dist/coverage -p 8001"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",

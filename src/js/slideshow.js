@@ -32,7 +32,7 @@ SlideShow.prototype.isFirstImage = function() {
 };
 
 SlideShow.prototype.isLastImage = function() {
-    return this.index === this.urls.length - 1;
+    return this.index >= 0 && this.index === this.urls.length - 1;
 };
 
 SlideShow.prototype.currentUrl = function() {
