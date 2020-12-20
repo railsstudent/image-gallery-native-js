@@ -159,6 +159,16 @@ dist/
    --- index.html
 ```
 
+```javascript
+# with npm
+npm run test:prod
+
+# or with yarn
+yarn test:prod
+```
+
+Open a new terminal to serve production site at http://localhost:8002
+
 # Deployment to Netlify
 ## First deployment
 1. Login https://www.netlify.com/

@@ -66,7 +66,7 @@ gulp.task('html', gulp.series(function() {
 }));
 
 gulp.task('clean', gulp.series(function(done) {
-    del(['dist/**/*.*']);
+    del(['dist/']);
     done();
 }));
 
