@@ -3,7 +3,6 @@
 require('dotenv').config()
 const gulp = require('gulp')
 const browserSync = require('browser-sync').create()
-const autoprefixer = require('gulp-autoprefixer')
 const sass = require('gulp-sass')
 const uglify = require('gulp-uglify')
 const sourcemaps = require('gulp-sourcemaps')
@@ -13,10 +12,9 @@ const cleanCSS = require('gulp-clean-css')
 const runSequence = require('gulp4-run-sequence')
 const concat = require('gulp-concat')
 const gulpIf = require('gulp-if')
-const replace = require('gulp-replace')
-const eslint = require('gulp-eslint')
 const KarmaServer = require('karma').Server
-const babel = require('gulp-babel')
+const postcss = require('gulp-postcss')
+const autoprefixer = require('autoprefixer')
 
 var minify = false
 
@@ -27,10 +25,37 @@ gulp.task(
         browserSync.init({
             server: './dist',
         })
-        gulp.watch('src/**/*.scss', gulp.series('sass')).on('change', browserSync.reload)
+        gulp.watch('src/**/*.scss', gulp.series('sass', 'tailwind')).on('change', browserSync.reload)
         gulp.watch('src/**/*.js', gulp.series('js')).on('change', browserSync.reload)
-        gulp.watch('src/**/*.html', gulp.series('html')).on('change', browserSync.reload)
+        gulp.watch('src/**/*.html', gulp.series('html', 'tailwind')).on('change', browserSync.reload)
         done()
+    }),
+)
+
+gulp.task(
+    'tailwind',
+    gulp.series(function () {
+        const tailwindcss = require('tailwindcss')
+        const atimport = require("postcss-import")
+        const rename = require('gulp-rename')
+        const purgecss = require('gulp-purgecss')
+        return gulp
+            .src('src/scss/tailwind.scss', { base: 'src/scss' })
+            .pipe(
+                postcss([
+                    atimport(),
+                    tailwindcss('./tailwind.config.js'), 
+                    autoprefixer(),
+                ]))
+            .pipe(
+                purgecss({
+                    content: ['src/**/*.html'],
+                    defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
+                }),
+            )
+            .pipe(gulpIf(minify, cleanCSS()))
+            .pipe(rename('tailwind.css'))
+            .pipe(gulp.dest('dist/css'))
     }),
 )
 
@@ -39,16 +64,11 @@ gulp.task(
     'sass',
     gulp.series(function () {
         return gulp
-            .src('src/**/*.scss', { base: 'src/scss' })
+            .src(['src/**/*.scss', '!src/scss/tailwind.scss'], { base: 'src/scss' })
             .pipe(sourcemaps.init())
             .pipe(sass().on('error', sass.logError))
+            .pipe(postcss([autoprefixer()]))
             .pipe(sourcemaps.write())
-            .pipe(
-                autoprefixer({
-                    browsers: ['last 2 versions'],
-                    cascade: false,
-                }),
-            )
             .pipe(gulpIf(minify, cleanCSS()))
             .pipe(gulp.dest('dist/css'))
     }),
@@ -58,6 +78,8 @@ gulp.task(
 gulp.task(
     'js',
     gulp.series(function () {
+        const replace = require('gulp-replace')
+        const babel = require('gulp-babel')
         return gulp
             .src('src/**/*.js', { base: 'js' })
             .pipe(replace('API_KEY', process.env.API_KEY))
@@ -103,7 +125,7 @@ gulp.task(
     'build',
     gulp.series(function (done) {
         minify = false
-        runSequence('clean', ['sass', 'js', 'html'], done)
+        runSequence('clean', ['tailwind', 'sass','js', 'html'], done)
     }),
 )
 
@@ -111,24 +133,17 @@ gulp.task(
     'build-dist',
     gulp.series(function (done) {
         minify = true
-        runSequence('clean', ['sass', 'js', 'html'], done)
+        runSequence('clean', ['tailwind', 'sass', 'js', 'html'], done)
     }),
 )
 
 gulp.task(
     'lint',
     gulp.series(function () {
+        const eslint = require('gulp-eslint')
         return gulp
             .src(['src/**/*.js', 'test/**/*.js'])
-            .pipe(
-                eslint({
-                    rules: {
-                        semi: 0,
-                        'comma-dangle': 0,
-                        quotes: ['error', 'single'],
-                    },
-                }),
-            )
+            .pipe(eslint())
             .pipe(eslint.format())
             .pipe(eslint.failAfterError())
     }),
