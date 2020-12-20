@@ -6,7 +6,7 @@
 
 $fontSize: 2em;
 $border-color: #888;
-$primary: #008CBA;
+$primary: #008cba;
 $content-background: #fefefe;
 
 @mixin fitImage {
@@ -85,7 +85,9 @@ $content-background: #fefefe;
             justify-content: space-between;
             margin-bottom: 10px;
 
-            .left-arrow, .right-arrow, .close {
+            .left-arrow,
+            .right-arrow,
+            .close {
                 font-size: 1.5em;
                 font-weight: bold;
                 opacity: 1;
@@ -109,7 +111,8 @@ $content-background: #fefefe;
                 }
             }
 
-            .right-arrow, .close {
+            .right-arrow,
+            .close {
                 display: inline-block;
             }
 

@@ -1,7 +1,7 @@
 /*eslint no-undef: "off"*/
 /*eslint no-unused-vars: "off"*/
 
-'use strict';
+'use strict'
 
-const expect = chai.expect;
-const assert = chai.assert;
+const expect = chai.expect
+const assert = chai.assert

@@ -1,9 +1,9 @@
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8" />
         <title>Image Gallery</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" type="text/css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="css/style.css" type="text/css" rel="stylesheet" />
         <script src="https://polyfill.io/v2/polyfill.min.js?features=Promise"></script>
         <script src="https://polyfill.io/v2/polyfill.min.js?features=fetch"></script>
     </head>
@@ -28,20 +28,20 @@
                 </div>
                 <div class="modal-body">
                     <div class="modal-image-wrapper">
-                        <img id="modal-image" class="modal-image" src></img>
+                        <img id="modal-image" class="modal-image" src />
                     </div>
-                    <p id="caption">Caption...</p>    
+                    <p id="caption">Caption...</p>
                 </div>
             </div>
         </div>
         <script src="js/all.js"></script>
         <script>
-            var gallery;
-            document.addEventListener('DOMContentLoaded', function() {
-                gallery = new Gallery();
-                gallery.registerEvents();
-                gallery.getImages();
-            });
+            var gallery
+            document.addEventListener('DOMContentLoaded', function () {
+                gallery = new Gallery()
+                gallery.registerEvents()
+                gallery.getImages()
+            })
         </script>
     </body>
 </html>

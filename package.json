@@ -1,99 +1,115 @@
 {
-  "name": "image-gallery-native",
-  "version": "1.0.0",
-  "description": "Image gallery using native JavaScript",
-  "main": "index.js",
-  "scripts": {
-    "build": "gulp build",
-    "build-dist": "gulp build-dist",
-    "start": "npm run build && gulp serve",
-    "serve:test": "gulp build && npx http-server dist -p 8000",
-    "puppeteer": "rm ./test/*.png; SCREEN_SHOT=false mocha test/bootstrap.js test/gallery.test.js",
-    "puppeteer-screenshot": "rm ./test/*.png; SCREEN_SHOT=true mocha test/bootstrap.js test/gallery.test.js",
-    "lint": "gulp lint",
-    "test": "gulp test",
-    "serve:coverage": "gulp test && npx http-server dist/coverage -p 8001",
-    "serve:prod": "gulp build-dist && npx http-server dist -p 8002"
-  },
-  "eslintConfig": {
-    "extends": "eslint:recommended",
-    "rules": {
-      "strict": [
-        "error",
-        "global"
-      ],
-      "semi": 2,
-      "no-unused-vars": 2,
-      "quotes": [
-        "warn",
-        "single"
-      ],
-      "comma-dangle": 2,
-      "no-extra-semi": 2,
-      "no-console": [
-        "warn",
-        {
-          "allow": [
-            "warn",
-            "error"
-          ]
-        }
-      ],
-      "no-undef": 1,
-      "no-unreachable": 2,
-      "no-magic-numbers": [
-        "warn",
-        {
-          "ignoreArrayIndexes": true
-        }
-      ],
-      "no-unused-expressions": 1
+    "name": "image-gallery-native",
+    "version": "1.0.0",
+    "description": "Image gallery using native JavaScript",
+    "main": "index.js",
+    "scripts": {
+        "build": "gulp build",
+        "build-dist": "gulp build-dist",
+        "start": "npm run build && gulp serve",
+        "serve:test": "gulp build && npx http-server dist -p 8000",
+        "puppeteer": "rm ./test/*.png; SCREEN_SHOT=false mocha test/bootstrap.js test/gallery.test.js",
+        "puppeteer-screenshot": "rm ./test/*.png; SCREEN_SHOT=true mocha test/bootstrap.js test/gallery.test.js",
+        "lint": "gulp lint",
+        "test": "gulp test",
+        "serve:coverage": "gulp test && npx http-server dist/coverage -p 8001",
+        "serve:prod": "gulp build-dist && npx http-server dist -p 8002",
+        "format": "prettier --write ."
     },
-    "parserOptions": {
-      "ecmaVersion": 2017
+    "eslintConfig": {
+        "extends": "eslint:recommended",
+        "rules": {
+            "strict": [
+                "error",
+                "global"
+            ],
+            "semi": 2,
+            "no-unused-vars": 2,
+            "quotes": [
+                "warn",
+                "single"
+            ],
+            "comma-dangle": 2,
+            "no-extra-semi": 2,
+            "no-console": [
+                "warn",
+                {
+                    "allow": [
+                        "warn",
+                        "error"
+                    ]
+                }
+            ],
+            "no-undef": 1,
+            "no-unreachable": 2,
+            "no-magic-numbers": [
+                "warn",
+                {
+                    "ignoreArrayIndexes": true
+                }
+            ],
+            "no-unused-expressions": 1
+        },
+        "parserOptions": {
+            "ecmaVersion": 2017
+        },
+        "env": {
+            "browser": true,
+            "node": true,
+            "mocha": true,
+            "es6": true
+        }
     },
-    "env": {
-      "browser": true,
-      "node": true,
-      "mocha": true,
-      "es6": true
+    "author": "Connie Leung",
+    "license": "MIT",
+    "devDependencies": {
+        "@babel/core": "^7.12.10",
+        "@babel/preset-env": "^7.12.11",
+        "browser-sync": "^2.26.13",
+        "chai": "4.1.2",
+        "del": "3.0.0",
+        "dotenv": "6.0.0",
+        "gulp": "^4.0.2",
+        "gulp-autoprefixer": "5.0.0",
+        "gulp-babel": "^8.0.0",
+        "gulp-clean-css": "3.9.4",
+        "gulp-concat": "2.6.1",
+        "gulp-eslint": "5.0.0",
+        "gulp-htmlmin": "4.0.0",
+        "gulp-if": "2.0.2",
+        "gulp-karma": "0.0.5",
+        "gulp-replace": "1.0.0",
+        "gulp-sass": "4.0.1",
+        "gulp-sourcemaps": "2.6.4",
+        "gulp-uglify": "3.0.0",
+        "gulp4-run-sequence": "^1.0.1",
+        "husky": "^4.2.3",
+        "karma": "^5.2.3",
+        "karma-chai": "0.1.0",
+        "karma-chrome-launcher": "2.2.0",
+        "karma-coverage": "1.1.2",
+        "karma-mocha": "^2.0.1",
+        "lint-staged": "^10.5.3",
+        "mocha": "^8.2.1",
+        "prettier": "2.2.1",
+        "puppeteer": "^2.1.1",
+        "run-sequence": "2.2.1"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged",
+            "pre-push": "npm run test"
+        }
+    },
+    "lint-staged": {
+        "src/**/*.{js}": [
+            "npm run lint",
+            "npm run format",
+            "git add"
+        ],
+        "*.{json,md}": [
+            "npm run format",
+            "git add"
+        ]
     }
-  },
-  "author": "Connie Leung",
-  "license": "MIT",
-  "devDependencies": {
-    "browser-sync": "^2.26.13",
-    "chai": "4.1.2",
-    "del": "3.0.0",
-    "dotenv": "6.0.0",
-    "gulp": "^4.0.2",
-    "gulp-autoprefixer": "5.0.0",
-    "gulp-clean-css": "3.9.4",
-    "gulp-concat": "2.6.1",
-    "gulp-eslint": "5.0.0",
-    "gulp-htmlmin": "4.0.0",
-    "gulp-if": "2.0.2",
-    "gulp-karma": "0.0.5",
-    "gulp-replace": "1.0.0",
-    "gulp-sass": "4.0.1",
-    "gulp-sourcemaps": "2.6.4",
-    "gulp-uglify": "3.0.0",
-    "gulp4-run-sequence": "^1.0.1",
-    "husky": "^4.2.3",
-    "karma": "^5.2.3",
-    "karma-chai": "0.1.0",
-    "karma-chrome-launcher": "2.2.0",
-    "karma-coverage": "1.1.2",
-    "karma-mocha": "^2.0.1",
-    "lint-staged": "^10.1.2",
-    "mocha": "^8.2.1",
-    "puppeteer": "^2.1.1",
-    "run-sequence": "2.2.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint",
-      "pre-push": "npm run test"
-    }
-  }
 }
