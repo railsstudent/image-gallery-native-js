@@ -54,12 +54,15 @@ function Gallery() {
             const strHtml = urls
                 .map(
                     (url, i) =>
-                        `<div class="image" onclick="gallery.openImage(${i})"><img src="${url}" alt="${url}"></div>`,
+                        `<div class="image m-1 flex" onclick="gallery.openImage(${i})">
+                            <img src="${url}" alt="${url}">
+                        </div>`,
                 )
                 .join('')
             elContainer.innerHTML = strHtml
         }
     }
+    sss
 
     function openImage(index) {
         try {

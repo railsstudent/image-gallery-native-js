@@ -31,19 +31,17 @@ $content-background: #fefefe;
     justify-content: center;
 
     .image {
-        flex: 0 0 calc(33.33% - 0.4rem);
+        flex: 0 0 calc(33.33% - 0.5rem);
         max-height: 300px;
-        display: flex;
-        margin: 0.2rem;
+        margin: 0.25rem;
 
         img {
-            flex-grow: 1;
-            @include fitImage;
+            object-fit: cover;
         }
 
-        &:hover {
-            cursor: pointer;
-        }
+        // &:hover {
+        //     cursor: pointer;
+        // }
     }
 }
 
@@ -97,10 +95,6 @@ $content-background: #fefefe;
 
         img {
             @include fitImage;
-        }
-
-        #caption {
-            text-align: center;
         }
     }
 }

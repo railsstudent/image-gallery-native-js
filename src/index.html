@@ -16,19 +16,19 @@
         <div id="msgPanel">
             <div class="description">Unable to retrieve images from Pixabay</div>
         </div>
-        <div class="modal">
+        <div class="modal font-sans">
             <div class="modal-content">
                 <div class="navigation-controls flex justify-between mb-s2">
                     <div class="flex-grow flex">
-                        <button class="left-arrow justify-start btn-blue" title="Show Previous">
+                        <button class="focus:outline-none left-arrow justify-start btn-blue" title="Show Previous">
                             <span>&lt;</span>
                         </button>
                     </div>
                     <div class="right-controls">
-                        <button class="right-arrow mr-2 btn-blue" title="Show Next">
+                        <button class="focus:outline-none right-arrow mr-2 btn-blue" title="Show Next">
                             <span>&gt;</span>
                         </button>
-                        <button class="close btn-blue" title="Close">
+                        <button class="focus:outline-none close btn-red" title="Close">
                             <span>&times;</span>
                         </button>
                     </div>
@@ -37,7 +37,7 @@
                     <div class="modal-image-wrapper">
                         <img id="modal-image" class="modal-image" src />
                     </div>
-                    <p id="caption">Caption...</p>
+                    <p id="caption" class="text-center">Caption...</p>
                 </div>
             </div>
         </div>
