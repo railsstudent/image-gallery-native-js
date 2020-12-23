@@ -25,9 +25,9 @@ gulp.task(
         browserSync.init({
             server: './dist',
         })
-        gulp.watch('src/**/*.scss', gulp.series('sass', 'tailwind')).on('change', browserSync.reload)
+        gulp.watch(['src/**/*.scss', '!src/scss/tailwind.scc'], gulp.series('sass')).on('change', browserSync.reload)
         gulp.watch('src/**/*.js', gulp.series('js')).on('change', browserSync.reload)
-        gulp.watch('src/**/*.html', gulp.series('html', 'tailwind')).on('change', browserSync.reload)
+        gulp.watch('src/**/*.html', gulp.series('html')).on('change', browserSync.reload)
         done()
     }),
 )

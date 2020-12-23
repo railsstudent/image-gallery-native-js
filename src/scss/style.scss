@@ -9,11 +9,6 @@ $border-color: #888;
 $primary: #008cba;
 $content-background: #fefefe;
 
-@mixin fitImage {
-    max-width: 100%;
-    object-fit: cover;
-}
-
 @mixin roundBox($padTop, $padLeft, $background, $radius: 0, $borderWidth: 1px, $color: #000) {
     padding: $padTop $padLeft;
     border: $borderWidth solid $border-color;
@@ -31,17 +26,10 @@ $content-background: #fefefe;
     justify-content: center;
 
     .image {
+        display: flex;
         flex: 0 0 calc(33.33% - 0.5rem);
         max-height: 300px;
         margin: 0.25rem;
-
-        img {
-            object-fit: cover;
-        }
-
-        // &:hover {
-        //     cursor: pointer;
-        // }
     }
 }
 
@@ -91,10 +79,6 @@ $content-background: #fefefe;
             flex-grow: 1;
 
             display: flex;
-        }
-
-        img {
-            @include fitImage;
         }
     }
 }

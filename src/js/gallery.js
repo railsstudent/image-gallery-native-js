@@ -54,8 +54,8 @@ function Gallery() {
             const strHtml = urls
                 .map(
                     (url, i) =>
-                        `<div class="image m-1 flex" onclick="gallery.openImage(${i})">
-                            <img src="${url}" alt="${url}">
+                        `<div class="image img-container" onclick="gallery.openImage(${i})">
+                            <img class="img" src="${url}" alt="${url}">
                         </div>`,
                 )
                 .join('')
