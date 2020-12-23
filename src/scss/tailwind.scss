@@ -31,14 +31,15 @@
 }
 
 @layer components {
-    .foo {
-        @apply flex;
-        @apply m-1;
-    };
-
     .img {
       @apply flex-grow;
       @apply cursor-pointer;
       @apply max-w-full;
+    }
+
+    .modal {
+        @apply hidden fixed;
+        @apply z-10 inset-0;
+        @apply bg-black bg-opacity-70;
     }
 }
