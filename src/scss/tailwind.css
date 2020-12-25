@@ -62,4 +62,12 @@
         transform: translate(-50%, -50%);
         height: 500px;
     }
+
+    .msg-panel {
+        @apply hidden w-screen h-screen;
+    }
+
+    .msg-panel.show {
+        @apply block;
+    }
 }

@@ -3,6 +3,7 @@
         <meta charset="utf-8" />
         <title>Image Gallery</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <link href="css/tailwind.css" type="text/css" rel="stylesheet" />
         <link href="css/style.css" type="text/css" rel="stylesheet" />
         <script src="https://polyfill.io/v2/polyfill.min.js?features=Promise"></script>
@@ -13,8 +14,16 @@
             <p class="text-center text-2rem underline">Swan Song</p>
         </div>
         <div id="container" class="flex flex-wrap justify-center min-h-screen"></div>
-        <div id="msgPanel">
-            <div class="description">Unable to retrieve images from Pixabay</div>
+        <div id="msgPanel" class="msg-panel">
+            <div class="my-0 mx-auto p-8 rounded-lg shadow-lg md:w-1/2 sm:w-full text-lg">
+                <div>
+                    <i class="fa fa-exclamation-triangle text-red-500"></i>
+                    <span class="font-bold text-gray-700">Error</span>
+                </div>
+                <div class="text-gray-400">
+                    Unable to retrieve images from Pixabay, please use correct API key
+                </div>
+            </div>
         </div>
         <div class="modal">
             <div class="modal-content font-sans text-black">

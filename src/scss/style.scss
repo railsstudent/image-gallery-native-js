@@ -23,20 +23,7 @@ $fontSize: 2rem;
     height: 400px;
 }
 
-#msgPanel {
-    display: none;
-    width: 100vw;
-    height: 100vh;
-
-    &.show {
-        display: flex;
-        align-items: center;
-    }
-
-    .description {
-        width: 100%;
-        font-size: $fontSize;
-        text-align: center;
-        @include roundBox(5%, 0, #dc3545!important, 0, 0, #fff);
-    }
+.msg-panel {
+    height: calc(100vh - 120px);
 }
+
