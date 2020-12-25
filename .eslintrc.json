@@ -1,0 +1,30 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true,
+        "mocha": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "rules": {
+        "strict": ["error", "global"],
+        "semi": 0,
+        "no-unused-vars": 2,
+        "quotes": ["error", "single"],
+        "comma-dangle": 0,
+        "no-extra-semi": 0,
+        "no-console": [
+            "warn",
+            {
+                "allow": ["warn", "error"]
+            }
+        ],
+        "no-undef": 1,
+        "no-unreachable": 2,
+        "no-unused-expressions": 1
+    }
+}

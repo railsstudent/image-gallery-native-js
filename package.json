@@ -11,7 +11,7 @@
         "gulp-build-dist": "gulp build-dist",
         "build-dist": "npm-run-all gulp-build-dist tailwind:prod",
         "serve": "gulp serve",
-        "lint": "gulp lint",
+        "lint": "eslint .",
         "test": "gulp test",
         "start": "npm-run-all build tailwind serve",
         "serve:test": "npm-run-all build tailwind && npx http-server dist -p 8000",
@@ -20,50 +20,6 @@
         "serve:coverage": "npm run test && npx http-server dist/coverage -p 8001",
         "serve:prod": "npm run build-dist && npx http-server dist -p 8002",
         "format": "prettier --write ."
-    },
-    "eslintConfig": {
-        "extends": "eslint:recommended",
-        "rules": {
-            "strict": [
-                "error",
-                "global"
-            ],
-            "semi": 0,
-            "no-unused-vars": 2,
-            "quotes": [
-                "error",
-                "single"
-            ],
-            "comma-dangle": 0,
-            "no-extra-semi": 0,
-            "no-console": [
-                "warn",
-                {
-                    "allow": [
-                        "warn",
-                        "error"
-                    ]
-                }
-            ],
-            "no-undef": 1,
-            "no-unreachable": 2,
-            "no-magic-numbers": [
-                "warn",
-                {
-                    "ignoreArrayIndexes": true
-                }
-            ],
-            "no-unused-expressions": 1
-        },
-        "parserOptions": {
-            "ecmaVersion": 2017
-        },
-        "env": {
-            "browser": true,
-            "node": true,
-            "mocha": true,
-            "es6": true
-        }
     },
     "author": "Connie Leung",
     "license": "MIT",
@@ -81,10 +37,10 @@
         "cssnano": "^4.1.10",
         "del": "3.0.0",
         "dotenv": "6.0.0",
+        "eslint": "^7.16.0",
         "gulp": "^4.0.2",
         "gulp-babel": "^8.0.0",
         "gulp-concat": "2.6.1",
-        "gulp-eslint": "5.0.0",
         "gulp-htmlmin": "4.0.0",
         "gulp-if": "2.0.2",
         "gulp-karma": "0.0.5",

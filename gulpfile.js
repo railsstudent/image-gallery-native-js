@@ -1,5 +1,3 @@
-'use strict'
-
 require('dotenv').config()
 const gulp = require('gulp')
 const browserSync = require('browser-sync').create()
@@ -119,18 +117,6 @@ gulp.task(
     gulp.series(function (done) {
         minify = true
         runSequence('clean', ['sass', 'js', 'html'], done)
-    }),
-)
-
-gulp.task(
-    'lint',
-    gulp.series(function () {
-        const eslint = require('gulp-eslint')
-        return gulp
-            .src(['src/**/*.js', 'test/**/*.js'])
-            .pipe(eslint())
-            .pipe(eslint.format())
-            .pipe(eslint.failAfterError())
     }),
 )
 

@@ -2,20 +2,9 @@
 
 'use strict'
 
-const zero = 0
-const one = 1
-const minusOne = -1
-
 describe('slideshow test', function () {
-    let first, middle, negativeIndex
     let imageUrls = []
     let slideshow = null
-    before(function () {
-        first = zero
-        middle = one
-        negativeIndex = minusOne
-    })
-
     describe('undefined urls', () => {
         before(function () {
             // runs before all tests in this block
@@ -23,7 +12,7 @@ describe('slideshow test', function () {
         })
 
         it('slideshow has 0 image', function () {
-            assert.strictEqual(slideshow.totalCount(), zero)
+            assert.strictEqual(slideshow.totalCount(), 0)
         })
 
         it('current url should be null', function () {
@@ -31,7 +20,7 @@ describe('slideshow test', function () {
         })
 
         it('initial index is always -1', function () {
-            assert.strictEqual(slideshow.currentIndex(), negativeIndex)
+            assert.strictEqual(slideshow.currentIndex(), -1)
         })
 
         it('Slide show with 0 image should return false for isFirstImage', function () {
@@ -44,12 +33,12 @@ describe('slideshow test', function () {
 
         it('Show next image does nothing when there is 0 image', function () {
             assert.strictEqual(slideshow.showNext(), false)
-            assert.strictEqual(slideshow.currentIndex(), negativeIndex)
+            assert.strictEqual(slideshow.currentIndex(), -1)
         })
 
         it('Slide prev image does nothing when there is 0 image', function () {
             assert.strictEqual(slideshow.showPrev(), false)
-            assert.strictEqual(slideshow.currentIndex(), negativeIndex)
+            assert.strictEqual(slideshow.currentIndex(), -1)
         })
     })
 
@@ -61,7 +50,7 @@ describe('slideshow test', function () {
         })
 
         it('slideshow has 0 image', function () {
-            assert.strictEqual(slideshow.totalCount(), zero)
+            assert.strictEqual(slideshow.totalCount(), 0)
         })
 
         it('current url should be null', function () {
@@ -69,7 +58,7 @@ describe('slideshow test', function () {
         })
 
         it('initial index is always -1', function () {
-            assert.strictEqual(slideshow.currentIndex(), negativeIndex)
+            assert.strictEqual(slideshow.currentIndex(), -1)
         })
 
         it('Slide show with 0 image should return false for isFirstImage', function () {
@@ -82,12 +71,12 @@ describe('slideshow test', function () {
 
         it('Show next image does nothing when there is 0 image', function () {
             assert.strictEqual(slideshow.showNext(), false)
-            assert.strictEqual(slideshow.currentIndex(), negativeIndex)
+            assert.strictEqual(slideshow.currentIndex(), -1)
         })
 
         it('Slide prev image does nothing when there is 0 image', function () {
             assert.strictEqual(slideshow.showPrev(), false)
-            assert.strictEqual(slideshow.currentIndex(), negativeIndex)
+            assert.strictEqual(slideshow.currentIndex(), -1)
         })
     })
 
@@ -96,7 +85,7 @@ describe('slideshow test', function () {
             // runs before all tests in this block
             imageUrls = ['image1.jpg']
             slideshow = new SlideShow(imageUrls)
-            slideshow.setCurrentIndex(first)
+            slideshow.setCurrentIndex(0)
         })
 
         it('slideshow has 1 image', function () {
@@ -108,7 +97,7 @@ describe('slideshow test', function () {
         })
 
         it('initial index is always 0', function () {
-            assert.strictEqual(slideshow.currentIndex(), first)
+            assert.strictEqual(slideshow.currentIndex(), 0)
         })
 
         it('Slide show with 1 image is always the first image', function () {
@@ -121,12 +110,12 @@ describe('slideshow test', function () {
 
         it('Show next image does nothing when there is 1 image', function () {
             assert.strictEqual(slideshow.showNext(), false)
-            assert.strictEqual(slideshow.currentIndex(), first)
+            assert.strictEqual(slideshow.currentIndex(), 0)
         })
 
         it('Slide prev image with 1 image is always last image', function () {
             assert.strictEqual(slideshow.showPrev(), false)
-            assert.strictEqual(slideshow.currentIndex(), first)
+            assert.strictEqual(slideshow.currentIndex(), 0)
         })
     })
 
@@ -135,13 +124,13 @@ describe('slideshow test', function () {
         before(function () {
             // runs before all tests in this block
             imageUrls = ['image1.jpg', 'image2.jpg', 'image3.jpg']
-            last = imageUrls.length - one
+            last = imageUrls.length - 1
             slideshow = new SlideShow(imageUrls)
-            slideshow.setCurrentIndex(first)
+            slideshow.setCurrentIndex(0)
         })
 
         it('slideshow has 3 images', function () {
-            assert.strictEqual(slideshow.totalCount(), imageUrls.length)
+            assert.strictEqual(slideshow.totalCount(), 3)
         })
 
         it('current url should be the first url', function () {
@@ -149,7 +138,7 @@ describe('slideshow test', function () {
         })
 
         it('initial index is always 0', function () {
-            assert.strictEqual(slideshow.currentIndex(), first)
+            assert.strictEqual(slideshow.currentIndex(), 0)
         })
 
         it('Test first image in multiple-image slideshow', function () {
@@ -159,7 +148,7 @@ describe('slideshow test', function () {
 
         it('Show next image advances index when there is more than 1 image and not the last one', function () {
             assert.strictEqual(slideshow.showNext(), true)
-            assert.strictEqual(slideshow.currentIndex(), middle)
+            assert.strictEqual(slideshow.currentIndex(), 1)
             assert.strictEqual(slideshow.isFirstImage(), false)
             assert.strictEqual(slideshow.isLastImage(), false)
             assert.strictEqual(slideshow.currentUrl(), 'image2.jpg')
@@ -183,7 +172,7 @@ describe('slideshow test', function () {
         before(function () {
             // runs before all tests in this block
             imageUrls = ['image1.jpg', 'image2.jpg', 'image3.jpg']
-            last = imageUrls.length - one
+            last = imageUrls.length - 1
             slideshow = new SlideShow(imageUrls)
             slideshow.setCurrentIndex(last)
         })
@@ -199,19 +188,19 @@ describe('slideshow test', function () {
 
         it('Slide prev image reduces index when it is not the first image of the slideshow', function () {
             assert.strictEqual(slideshow.showPrev(), true)
-            assert.strictEqual(slideshow.currentIndex(), middle)
+            assert.strictEqual(slideshow.currentIndex(), 1)
             assert.strictEqual(slideshow.isFirstImage(), false)
             assert.strictEqual(slideshow.isLastImage(), false)
             assert.strictEqual(slideshow.currentUrl(), 'image2.jpg')
 
             assert.strictEqual(slideshow.showPrev(), true)
-            assert.strictEqual(slideshow.currentIndex(), first)
+            assert.strictEqual(slideshow.currentIndex(), 0)
             assert.strictEqual(slideshow.isFirstImage(), true)
             assert.strictEqual(slideshow.isLastImage(), false)
             assert.strictEqual(slideshow.currentUrl(), 'image1.jpg')
 
             assert.strictEqual(slideshow.showPrev(), false)
-            assert.strictEqual(slideshow.currentIndex(), first)
+            assert.strictEqual(slideshow.currentIndex(), 0)
             assert.strictEqual(slideshow.isFirstImage(), true)
             assert.strictEqual(slideshow.isLastImage(), false)
             assert.strictEqual(slideshow.currentUrl(), 'image1.jpg')
@@ -226,7 +215,7 @@ describe('slideshow test', function () {
         })
 
         it('Throw error message if index is negative', function () {
-            expect(() => slideshow.setCurrentIndex(negativeIndex)).to.throw('Non-negative integer is expected')
+            expect(() => slideshow.setCurrentIndex(-1)).to.throw('Non-negative integer is expected')
         })
 
         it('Throw error message if index is greater than the number of urls', function () {

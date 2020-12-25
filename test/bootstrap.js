@@ -3,6 +3,9 @@
 const puppeteer = require('puppeteer')
 const chai = require('chai')
 const expect = chai.expect
+/* eslint-disable no-unused-vars */
+const assert = chai.assert
+
 const globalVariables = {
     browser: global.browser,
     expect: global.expect,

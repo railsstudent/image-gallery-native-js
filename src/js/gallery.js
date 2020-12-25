@@ -1,4 +1,5 @@
 'use strict'
+/*global SlideShow */
 
 function Gallery() {
     var slideShow = null
