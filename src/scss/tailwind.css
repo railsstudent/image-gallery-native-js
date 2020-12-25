@@ -70,4 +70,8 @@
     .msg-panel.show {
         @apply block;
     }
+
+    .modal-content button {
+        @apply w-10 h-10 focus:outline-none border border-gray-400;
+    }
 }

@@ -4,16 +4,6 @@
     margin: 0;
 }
 
-$fontSize: 2rem;
-
-@mixin roundBox($padTop, $padLeft, $background, $radius: 0, $borderWidth: 1px, $color: #000) {
-    padding: $padTop $padLeft;
-    border: $borderWidth solid #888;
-    border-radius: $radius;
-    background: $background;
-    color: $color;
-}
-
 #container {
     width: calc(100vw - 4%);
     margin: 0 2%;
@@ -26,4 +16,3 @@ $fontSize: 2rem;
 .msg-panel {
     height: calc(100vh - 120px);
 }
-
