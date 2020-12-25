@@ -1,7 +1,4 @@
-/*eslint no-undef: "off"*/
-/*eslint prefer-template: "error"*/
-
-'use strict'
+/* global expect, browser */
 
 const NUM_IMAGES = 15
 const TIMEOUT = 30000

@@ -1,5 +1,3 @@
-'use strict'
-
 const puppeteer = require('puppeteer')
 const chai = require('chai')
 const expect = chai.expect

@@ -1,6 +1,4 @@
-/*eslint no-undef: "off"*/
-
-'use strict'
+/* global SlideShow, assert, expect */
 
 describe('slideshow test', function () {
     let imageUrls = []
