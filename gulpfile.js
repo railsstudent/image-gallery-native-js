@@ -8,14 +8,10 @@ const uglify = require('gulp-uglify')
 const sourcemaps = require('gulp-sourcemaps')
 const htmlmin = require('gulp-htmlmin')
 const del = require('del')
-const cleanCSS = require('gulp-clean-css')
 const runSequence = require('gulp4-run-sequence')
 const concat = require('gulp-concat')
 const gulpIf = require('gulp-if')
 const KarmaServer = require('karma').Server
-const postcss = require('gulp-postcss')
-const autoprefixer = require('autoprefixer')
-
 var minify = false
 
 // Static Server + watching scss/html files
@@ -36,13 +32,29 @@ gulp.task(
 gulp.task(
     'sass',
     gulp.series(function () {
+        const purgecss = require('@fullhuman/postcss-purgecss')
+        const cssnano = require('cssnano')
+        const postcss = require('gulp-postcss')
+        const autoprefix = require('autoprefixer')
+
+        const plugins = minify
+            ? [
+                  autoprefix,
+                  cssnano({
+                      preset: 'default',
+                  }),
+                  purgecss({
+                      content: ['src/**/*.html', 'src/**/*.js'],
+                      defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
+                  }),
+              ]
+            : [autoprefix]
         return gulp
             .src(['src/**/*.scss', '!src/scss/tailwind.scss'], { base: 'src/scss' })
             .pipe(sourcemaps.init())
             .pipe(sass().on('error', sass.logError))
-            .pipe(postcss([autoprefixer()]))
+            .pipe(postcss(plugins))
             .pipe(sourcemaps.write())
-            .pipe(gulpIf(minify, cleanCSS()))
             .pipe(gulp.dest('dist/css'))
     }),
 )
