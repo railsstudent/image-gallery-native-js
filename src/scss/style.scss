@@ -5,13 +5,10 @@
 }
 
 $fontSize: 2rem;
-$border-color: #888;
-$primary: #008cba;
-$content-background: #fefefe;
 
 @mixin roundBox($padTop, $padLeft, $background, $radius: 0, $borderWidth: 1px, $color: #000) {
     padding: $padTop $padLeft;
-    border: $borderWidth solid $border-color;
+    border: $borderWidth solid #888;
     border-radius: $radius;
     background: $background;
     color: $color;
@@ -19,59 +16,12 @@ $content-background: #fefefe;
 
 #container {
     width: calc(100vw - 4%);
-    min-height: 100vh;
     margin: 0 2%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    .image {
-        display: flex;
-        flex: 0 0 calc(33.33% - 0.5rem);
-        max-height: 300px;
-        margin: 0.25rem;
-    }
 }
 
-.modal {
-    &.show {
-        display: block;
-    }
-
-    &-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        max-width: 700px;
-        height: 500px;
-        @include roundBox(20px, 30px, $content-background, 10px, 8px);
-
-        .navigation-controls {
-            .left-arrow,
-            .right-arrow,
-            .close {
-                &.hide {
-                    opacity: 0;
-                }
-            }
-        }
-    }
-
-    &-body {
-        height: 400px;
-        display: flex;
-        flex-direction: column;
-
-        .modal-image-wrapper {
-            height: 400px;
-            overflow-y: auto;
-            margin-bottom: 8px;
-            flex-grow: 1;
-
-            display: flex;
-        }
-    }
+.modal-body,
+.modal-image-wrapper {
+    height: 400px;
 }
 
 #msgPanel {

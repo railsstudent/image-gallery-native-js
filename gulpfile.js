@@ -32,28 +32,6 @@ gulp.task(
     }),
 )
 
-gulp.task(
-    'tailwind',
-    gulp.series(function () {
-        const tailwindcss = require('tailwindcss')
-        const atimport = require('postcss-import')
-        const rename = require('gulp-rename')
-        const purgecss = require('gulp-purgecss')
-        return gulp
-            .src('src/scss/tailwind.scss', { base: 'src/scss' })
-            .pipe(postcss([atimport(), tailwindcss('./tailwind.config.js'), autoprefixer()]))
-            .pipe(
-                purgecss({
-                    content: ['src/**/*.html'],
-                    defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
-                }),
-            )
-            .pipe(gulpIf(minify, cleanCSS()))
-            .pipe(rename('tailwind.css'))
-            .pipe(gulp.dest('dist/css'))
-    }),
-)
-
 // Compile sass into CSS & auto-inject into browsers
 gulp.task(
     'sass',
@@ -120,7 +98,7 @@ gulp.task(
     'build',
     gulp.series(function (done) {
         minify = false
-        runSequence('clean', ['tailwind', 'sass', 'js', 'html'], done)
+        runSequence('clean', ['sass', 'js', 'html'], done)
     }),
 )
 
@@ -128,7 +106,7 @@ gulp.task(
     'build-dist',
     gulp.series(function (done) {
         minify = true
-        runSequence('clean', ['tailwind', 'sass', 'js', 'html'], done)
+        runSequence('clean', ['sass', 'js', 'html'], done)
     }),
 )
 

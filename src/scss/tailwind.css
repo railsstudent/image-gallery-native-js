@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+    @apply text-white;
+    @apply font-bold;
+    @apply text-white;
+    @apply p-2;
+    @apply rounded;
+    @apply text-small;
+    @apply opacity-100;
+}
+
+.btn-blue {
+    @apply btn;
+    @apply bg-blue-500;
+}
+
+.btn-blue:hover {
+    @apply bg-blue-700;
+}
+
+.btn-red {
+    @apply btn;
+    @apply bg-red-500;
+}
+
+.btn-red:hover {
+    @apply bg-red-700;
+}
+
+@layer components {
+    .img-container {
+        @apply flex m-1;
+        flex: 0 0 calc(33.33% - 0.5rem);
+        max-height: 300px;
+    }
+
+    .img {
+        @apply flex-grow;
+        @apply cursor-pointer;
+        @apply max-w-full;
+    }
+
+    .modal {
+        @apply hidden fixed z-10 inset-0 bg-black bg-opacity-70;
+    }
+
+    .modal.show {
+        @apply block;
+    }
+
+    .navigation-controls .left-arrow.hide,
+    .navigation-controls .right-arrow.hide,
+    .navigation-controls .close.hide {
+        @apply opacity-0;
+    }
+
+    .modal-content {
+        @apply absolute max-w-2xl p-7 bg-white-254 rounded-lg top-1/2 left-1/2 border-gray-400 border-4 border-solid;
+        transform: translate(-50%, -50%);
+        height: 500px;
+    }
+}

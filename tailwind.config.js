@@ -11,6 +11,10 @@ module.exports = {
                 s2: '0.625rem',
             },
         },
+        backgroundColor: (theme) => ({
+            ...theme('colors'),
+            'white-254': '#fefefe',
+        }),
     },
     variants: {
         extend: {},
