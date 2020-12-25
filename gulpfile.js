@@ -62,12 +62,10 @@ gulp.task(
     'js',
     gulp.series(function () {
         const replace = require('gulp-replace')
-        const babel = require('gulp-babel')
         return gulp
             .src('src/**/*.js', { base: 'js' })
             .pipe(replace('API_KEY', process.env.API_KEY))
             .pipe(gulpIf(minify, sourcemaps.init()))
-            .pipe(babel())
             .pipe(concat('all.js'))
             .pipe(gulpIf(minify, uglify()))
             .pipe(gulpIf(minify, sourcemaps.write('.')))
