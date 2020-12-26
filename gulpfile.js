@@ -11,6 +11,7 @@ const concat = require('gulp-concat')
 const gulpIf = require('gulp-if')
 const KarmaServer = require('karma').Server
 var minify = false
+const fontawesomePath = 'node_modules/@fortawesome/fontawesome-free/'
 
 // Static Server + watching scss/html files
 gulp.task(
@@ -97,13 +98,11 @@ gulp.task(
     gulp.series(
         () => {
             // copy font awesome css to  dist
-            return gulp.src('node_modules/@fortawesome/fontawesome-free/css/solid*').pipe(gulp.dest('dist/fonts'))
+            return gulp.src(`${fontawesomePath}/css/solid*`).pipe(gulp.dest('dist/fonts'))
         },
         () => {
             // copy font awesome css to  dist
-            return gulp
-                .src('node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid*')
-                .pipe(gulp.dest('dist/webfonts'))
+            return gulp.src(`${fontawesomePath}/webfonts/fa-solid*`).pipe(gulp.dest('dist/webfonts'))
         },
     ),
 )
