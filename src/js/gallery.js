@@ -117,48 +117,40 @@ function Gallery() {
             elBtnForward.addEventListener('click', goLast)
         }
 
-        function clickPrev() {
-            if (slideShow) {
-                if (!slideShow.isFirstImage()) {
-                    slideShow.showPrev()
-                    elModalImage.src = slideShow.currentUrl()
-                    updateImageCaption()
-                }
+        function updateModal() {
+            if (slideShow && elModalImage) {
+                elModalImage.src = slideShow.currentUrl()
+                updateImageCaption()
                 setButtonsVisible()
             }
+        }
+
+        function clickPrev() {
+            if (slideShow && !slideShow.isFirstImage()) {
+                slideShow.showPrev()
+            }
+            updateModal()
         }
 
         function clickNext() {
-            if (slideShow) {
-                if (!slideShow.isLastImage()) {
-                    slideShow.showNext()
-                    elModalImage.src = slideShow.currentUrl()
-                    updateImageCaption()
-                }
-                setButtonsVisible()
+            if (slideShow && !slideShow.isLastImage()) {
+                slideShow.showNext()
             }
+            updateModal()
         }
 
         function goFirst() {
-            if (slideShow) {
-                if (!slideShow.isFirstImage()) {
-                    slideShow.showFirst()
-                    elModalImage.src = slideShow.currentUrl()
-                    updateImageCaption()
-                }
-                setButtonsVisible()
+            if (slideShow && !slideShow.isFirstImage()) {
+                slideShow.showFirst()
             }
+            updateModal()
         }
 
         function goLast() {
-            if (slideShow) {
-                if (!slideShow.isLastImage()) {
-                    slideShow.showLast()
-                    elModalImage.src = slideShow.currentUrl()
-                    updateImageCaption()
-                }
-                setButtonsVisible()
+            if (slideShow && !slideShow.isLastImage()) {
+                slideShow.showLast()
             }
+            updateModal()
         }
     }
 
