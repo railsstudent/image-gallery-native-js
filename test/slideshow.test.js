@@ -248,4 +248,102 @@ describe('slideshow test', function () {
             })
         })
     })
+
+    describe('Show first image', () => {
+        describe('Always show first image if slideshow has one image', () => {
+            before(function () {
+                // runs before all tests in this block
+                imageUrls = ['image1.jpg']
+                slideshow = new SlideShow(imageUrls)
+                slideshow.setCurrentIndex(0)
+            })
+
+            it('Always update index to show the first image', function () {
+                assert.strictEqual(slideshow.showFirst(), true)
+                assert.strictEqual(slideshow.currentUrl(), 'image1.jpg')
+                assert.strictEqual(slideshow.isFirstImage(), true)
+                assert.strictEqual(slideshow.isLastImage(), true)
+            })
+        })
+
+        describe('Always show first image if slideshow has many images', () => {
+            before(function () {
+                // runs before all tests in this block
+                imageUrls = ['image1.jpg', 'image2.jpg']
+                slideshow = new SlideShow(imageUrls)
+                slideshow.setCurrentIndex(1)
+            })
+
+            it('Always update index to show the first image', function () {
+                assert.strictEqual(slideshow.showFirst(), true)
+                assert.strictEqual(slideshow.currentUrl(), 'image1.jpg')
+                assert.strictEqual(slideshow.isFirstImage(), true)
+                assert.strictEqual(slideshow.isLastImage(), false)
+            })
+        })
+
+        describe('Does not  show image if slideshow has zero image', () => {
+            before(function () {
+                // runs before all tests in this block
+                imageUrls = []
+                slideshow = new SlideShow(imageUrls)
+            })
+
+            it('Return false and does not show the first image', function () {
+                assert.strictEqual(slideshow.showFirst(), false)
+                assert.strictEqual(slideshow.currentUrl(), null)
+                assert.strictEqual(slideshow.isFirstImage(), false)
+                assert.strictEqual(slideshow.isLastImage(), false)
+            })
+        })
+    })
+
+    describe('Show last image', () => {
+        describe('Always show the only image if slideshow has one image', () => {
+            before(function () {
+                // runs before all tests in this block
+                imageUrls = ['image1.jpg']
+                slideshow = new SlideShow(imageUrls)
+                slideshow.setCurrentIndex(0)
+            })
+
+            it('Always update index to show the first image', function () {
+                assert.strictEqual(slideshow.showLast(), true)
+                assert.strictEqual(slideshow.currentUrl(), 'image1.jpg')
+                assert.strictEqual(slideshow.isFirstImage(), true)
+                assert.strictEqual(slideshow.isLastImage(), true)
+            })
+        })
+
+        describe('Always show first image if slideshow has many images', () => {
+            before(function () {
+                // runs before all tests in this block
+                imageUrls = ['image1.jpg', 'image2.jpg']
+                slideshow = new SlideShow(imageUrls)
+                slideshow.setCurrentIndex(0)
+            })
+
+            it('Always update index to show the first image', function () {
+                assert.strictEqual(slideshow.showLast(), true)
+                assert.strictEqual(slideshow.currentUrl(), 'image2.jpg')
+                assert.strictEqual(slideshow.isFirstImage(), false)
+                assert.strictEqual(slideshow.isLastImage(), true)
+            })
+        })
+
+        describe('Does not  show image if slideshow has zero image', () => {
+            before(function () {
+                // runs before all tests in this block
+                imageUrls = []
+                slideshow = new SlideShow(imageUrls)
+            })
+
+            it('Return false and does not show the first image', function () {
+                assert.strictEqual(slideshow.showLast(), false)
+                assert.strictEqual(slideshow.currentUrl(), null)
+                assert.strictEqual(slideshow.isFirstImage(), false)
+                assert.strictEqual(slideshow.isLastImage(), false)
+            })
+        })
+    })
 })
