@@ -30,6 +30,15 @@
     .btn-red:hover {
         @apply bg-red-700;
     }
+
+    .btn-green {
+        @apply btn;
+        @apply bg-green-500;
+    }
+
+    .btn-green:hover {
+        @apply bg-green-700;
+    }
 }
 
 @layer components {
@@ -53,10 +62,16 @@
         @apply block;
     }
 
-    .navigation-controls .left-arrow.hide,
-    .navigation-controls .right-arrow.hide,
     .navigation-controls .close.hide {
         @apply opacity-0;
+    }
+
+    .navigation-controls .left-arrow.disabled,
+    .navigation-controls .right-arrow.disabled,
+    .navigation-controls .forward-arrow.disabled,
+    .navigation-controls .backward-arrow.disabled {
+        @apply bg-gray-300;
+        cursor: not-allowed;
     }
 
     .modal-content {

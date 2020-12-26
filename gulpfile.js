@@ -97,7 +97,7 @@ gulp.task(
     gulp.series(
         () => {
             // copy font awesome css to  dist
-            return gulp.src(`node_modules/@fortawesome/fontawesome-free/css/solid*`).pipe(gulp.dest('dist/fonts'))
+            return gulp.src('node_modules/@fortawesome/fontawesome-free/css/solid*').pipe(gulp.dest('dist/fonts'))
         },
         () => {
             // copy font awesome css to  dist

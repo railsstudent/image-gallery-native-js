@@ -56,3 +56,19 @@ SlideShow.prototype.showPrev = function () {
     }
     return false
 }
+
+SlideShow.prototype.showLast = function () {
+    if (!this.urls || !inRange(this.urls.length - 1, this.urls)) {
+        return false
+    }
+    this.index = this.urls.length - 1
+    return true
+}
+
+SlideShow.prototype.showFirst = function () {
+    if (inRange(0, this.urls)) {
+        this.index = 0
+        return true
+    }
+    return false
+}

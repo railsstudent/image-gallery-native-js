@@ -14,6 +14,8 @@ function Gallery() {
     const elMessagePanel = document.getElementById('msgPanel')
     const elContainer = document.getElementById('container')
     const elCaption = document.getElementById('caption')
+    const elBtnBackward = document.querySelector('.modal .backward-arrow')
+    const elBtnForward = document.querySelector('.modal .forward-arrow')
 
     const publicAPI = {
         getImages,
@@ -84,11 +86,13 @@ function Gallery() {
 
     function setButtonsVisible() {
         if (slideShow) {
-            const btnLeftAction = slideShow.isFirstImage() ? 'add' : 'remove'
-            const btnRightAction = slideShow.isLastImage() ? 'add' : 'remove'
+            const prevAction = slideShow.isFirstImage() ? 'add' : 'remove'
+            const nextAction = slideShow.isLastImage() ? 'add' : 'remove'
 
-            elBtnLeft.classList[btnLeftAction]('hide')
-            elBtnRight.classList[btnRightAction]('hide')
+            elBtnLeft.classList[prevAction]('disabled')
+            elBtnBackward.classList[prevAction]('disabled')
+            elBtnRight.classList[nextAction]('disabled')
+            elBtnForward.classList[nextAction]('disabled')
         }
     }
 
@@ -103,6 +107,14 @@ function Gallery() {
 
         if (elBtnRight) {
             elBtnRight.addEventListener('click', clickNext)
+        }
+
+        if (elBtnBackward) {
+            elBtnBackward.addEventListener('click', goFirst)
+        }
+
+        if (elBtnForward) {
+            elBtnForward.addEventListener('click', goLast)
         }
 
         function clickPrev() {
@@ -120,6 +132,28 @@ function Gallery() {
             if (slideShow) {
                 if (!slideShow.isLastImage()) {
                     slideShow.showNext()
+                    elModalImage.src = slideShow.currentUrl()
+                    updateImageCaption()
+                }
+                setButtonsVisible()
+            }
+        }
+
+        function goFirst() {
+            if (slideShow) {
+                if (!slideShow.isFirstImage()) {
+                    slideShow.showFirst()
+                    elModalImage.src = slideShow.currentUrl()
+                    updateImageCaption()
+                }
+                setButtonsVisible()
+            }
+        }
+
+        function goLast() {
+            if (slideShow) {
+                if (!slideShow.isLastImage()) {
+                    slideShow.showLast()
                     elModalImage.src = slideShow.currentUrl()
                     updateImageCaption()
                 }
