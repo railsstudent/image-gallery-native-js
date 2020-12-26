@@ -93,6 +93,22 @@ gulp.task(
 )
 
 gulp.task(
+    'fonts',
+    gulp.series(
+        () => {
+            // copy font awesome css to  dist
+            return gulp.src(`node_modules/@fortawesome/fontawesome-free/css/solid*`).pipe(gulp.dest('dist/fonts'))
+        },
+        () => {
+            // copy font awesome css to  dist
+            return gulp
+                .src('node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid*')
+                .pipe(gulp.dest('dist/webfonts'))
+        },
+    ),
+)
+
+gulp.task(
     'clean',
     gulp.series(function (done) {
         del(['dist/**/*.*'])
@@ -106,7 +122,7 @@ gulp.task(
     'build',
     gulp.series(function (done) {
         minify = false
-        runSequence('clean', ['sass', 'js', 'html'], done)
+        runSequence('clean', ['fonts', 'sass', 'js', 'html'], done)
     }),
 )
 
@@ -114,7 +130,7 @@ gulp.task(
     'build-dist',
     gulp.series(function (done) {
         minify = true
-        runSequence('clean', ['sass', 'js', 'html'], done)
+        runSequence('clean', ['fonts', 'sass', 'js', 'html'], done)
     }),
 )
 

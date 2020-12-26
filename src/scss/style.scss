@@ -16,3 +16,41 @@
 .msg-panel {
     height: calc(100vh - 120px);
 }
+
+// copy fontawesome css
+.fa,
+.fas,
+.far,
+.fal,
+.fad,
+.fab {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+
+.fa,
+.fas {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+
+.fa-times:before {
+    content: '\f00d';
+}
+
+.fa-exclamation-triangle:before {
+    content: '\f071';
+}
+
+.fa-angle-right:before {
+    content: '\f105';
+}
+
+.fa-angle-left:before {
+    content: '\f104';
+}

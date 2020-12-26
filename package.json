@@ -24,6 +24,7 @@
     "author": "Connie Leung",
     "license": "MIT",
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.1",
         "tailwindcss": "^2.0.2"
     },
     "devDependencies": {
