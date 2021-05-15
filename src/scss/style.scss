@@ -9,8 +9,14 @@
     margin: 0 2%;
 }
 
-.modal-body {
-    height: 400px;
+.modal {
+    &-body {
+        height: 400px;
+    }
+
+    &-image {
+        width: 100%;
+    }
 }
 
 .msg-panel {
