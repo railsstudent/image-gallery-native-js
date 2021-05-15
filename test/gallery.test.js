@@ -26,7 +26,7 @@ describe('gallery test', function () {
             const title = await page.evaluate(() => {
                 return document.querySelector('div.title > p').innerText
             })
-            expect(title).to.equal('Swan Song')
+            expect(title).to.equal('Swan Album')
         } catch (e) {
             console.error(e)
             throw e

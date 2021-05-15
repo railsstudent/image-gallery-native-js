@@ -3,7 +3,7 @@
 
 function Gallery() {
     var slideShow = null
-    const API_URL = 'https://pixabay.com/api/?q=swan&per_page=15&image_type=&key=API_KEY'
+    const API_URL = 'https://pixabay.com/api/?q=swan&per_page=30&category=animals&image_type=photo&key=API_KEY'
     var i = 0
     const images = []
     const elModal = document.querySelector('.modal')
